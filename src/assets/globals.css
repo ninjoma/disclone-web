@@ -23,5 +23,10 @@ text-rendering: optimizeLegibility;
 
 @font-face {
     font-family: 'Open Sans';
-    src: url("../../public/fonts/OpenSans.ttf")
+    src: url("../../fonts/OpenSans.ttf")
+}
+
+@font-face {
+    font-family: 'Uni Sans';
+    src: url("../../fonts/UniSans.otf")
 }
