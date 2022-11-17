@@ -16,6 +16,7 @@ import Message from "./Message.vue";
 <style scoped>
 
 .messages-col {
+    flex:4;
     height:100%;
     max-height:100%;
     display:flex;
@@ -27,19 +28,40 @@ import Message from "./Message.vue";
     width:100%;
     padding-left:20px;
     padding-right:20px;
-    overflow-y: scroll;
+    overflow-y: auto;
     flex: 1;
     flex-basis: 0;
     min-height: 0;
 }
+
+
+.message-col-body::-webkit-scrollbar-track
+{
+	background-color: #5F5DA6;
+}
+
+.message-col-body::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #262626;
+}
+
+.message-col-body::-webkit-scrollbar-thumb
+{
+	background-color: #262626;
+}
+
 .message-col-input {
     width:100%;
     height:64px;
+    display:flex;
+    align-items: center;
     bottom:0;
     background-color:#4f4d8c;
 }
 
 .message-col-input > span {
+    width:100%;
     display:block;
     overflow:hidden;
     padding: 10px;
