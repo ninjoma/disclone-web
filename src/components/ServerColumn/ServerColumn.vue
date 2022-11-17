@@ -10,12 +10,14 @@ import UserControls from "./UserControls.vue";
         <div class="server-contents-col">
             <div class="server-header">
                 Server Name
+                <i class="bi bi-chevron-down"></i>
+
             </div>
             <div class="server-channels">
-                <ChannelButton/>
-                <ChannelButton/>
-                <ChannelButton/>
-                <ChannelButton/>
+                <ChannelButton type="text" name="A random Channel"/>
+                <ChannelButton type="voice" name="Just a random Channel"/>
+                <ChannelButton type="text" name="Another random Channel"/>
+                <ChannelButton type="text" name="Gaming Channel"/>
             </div>
             <UserControls/>
         </div>
@@ -56,9 +58,10 @@ import UserControls from "./UserControls.vue";
     width:100%;
     display:flex;
     align-items: center;
+    justify-content: space-between;
     padding:10px;
-    padding-left:16px;
-    padding-right:16px;
+    padding-left:20px;
+    padding-right:20px;
     border-bottom: 2px solid rgba(0,0,0,0.2);
     font-family: 'Open Sans';
     font-weight:bolder;

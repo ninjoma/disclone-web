@@ -1,6 +1,14 @@
+<script>
+export default {
+  props: ['type', 'name']
+}
+</script>
+
 <template>
     <button class="channel">
-        <i class="bi bi-quote icon-big"></i> A random Channel
+        <i v-if="type === 'text'" class="bi bi-quote icon-big"></i> 
+        <i v-if="type === 'voice'" class="bi bi-volume-down-fill icon-big"></i>
+        <span class="name">{{ name }}</span>
     </button>
 </template>
 
