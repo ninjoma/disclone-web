@@ -1,6 +1,6 @@
 <template>
     <button class="channel">
-        A random Channel
+        <i class="bi bi-quote icon-big"></i> A random Channel
     </button>
 </template>
 
@@ -16,6 +16,12 @@
     color:white;
     margin-top:5px;
     margin-bottom:5px;
+    display:flex;
+    align-items: center;
+}
+
+.channel > i {
+    padding-right:5px;
 }
 
 .channel:hover {

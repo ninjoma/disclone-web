@@ -10,7 +10,7 @@ import UsersColumn from "../components/UsersColumn.vue";
             <ServerColumn/>
             <div class="header-bar-container">
                 <div class="message-col-header">
-                    Text Channel Name
+                    <i class="bi bi-quote icon-big"></i> Text Channel Name
                 </div>
                 <div class="message-column">
                     <MessageColumn/>

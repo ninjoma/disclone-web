@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
 *,
 *::before,
 *::after {
@@ -29,4 +31,8 @@ text-rendering: optimizeLegibility;
 @font-face {
     font-family: 'Uni Sans';
     src: url("../../fonts/UniSans.otf")
+}
+
+.icon-big {
+    font-size:20px;
 }
