@@ -17,8 +17,8 @@ import UserControls from "./UserControls.vue";
                 <ChannelButton/>
                 <ChannelButton/>
             </div>
+            <UserControls/>
         </div>
-        <UserControls/>
     </div>
 </template>
 
