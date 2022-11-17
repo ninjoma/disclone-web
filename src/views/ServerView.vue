@@ -31,7 +31,7 @@ import UsersColumn from "../components/UsersColumn.vue";
 }
 
 .header-bar-container {
-    min-height:100vh; display:flex; flex-direction:column; flex:3.8;
+    min-height:100vh; max-height:100vh; display:flex; flex-direction:column; flex:3.8;
 }
 
 .message-column {

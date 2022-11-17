@@ -11,7 +11,6 @@ import UserControls from "./UserControls.vue";
             <div class="server-header">
                 Server Name
                 <i class="bi bi-chevron-down"></i>
-
             </div>
             <div class="server-channels">
                 <ChannelButton type="text" name="A random Channel"/>

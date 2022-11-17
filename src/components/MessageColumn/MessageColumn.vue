@@ -1,7 +1,11 @@
+<script setup lang="ts">
+import Message from "./Message.vue";
+</script>
+
 <template>
     <div class="messages-col">
         <div class="message-col-body">
-
+            
         </div>
         <div class="message-col-input">
             <span><input class="message-input" placeholder="Enter a message..."></span>
@@ -12,8 +16,8 @@
 <style scoped>
 
 .messages-col {
-    flex:4;
     height:100%;
+    max-height:100%;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
@@ -21,11 +25,18 @@
 
 .message-col-body {
     width:100%;
-    flex:1;
+    padding-left:20px;
+    padding-right:20px;
+    overflow-y: scroll;
+    flex: 1;
+    flex-basis: 0;
+    min-height: 0;
 }
 .message-col-input {
     width:100%;
     height:64px;
+    bottom:0;
+    background-color:#4f4d8c;
 }
 
 .message-col-input > span {
@@ -41,7 +52,7 @@
     height: 38px;
     border-radius: 5px;
     border: 0px;
-    background-color: #4f4d8c;
+    background-color: #5F5DA6;
     font-family: 'Open Sans';
     color:white;
     padding: 10px;
