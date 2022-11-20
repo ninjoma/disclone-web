@@ -4,13 +4,7 @@ import ServerIcon from "./ServerIcon.vue";
 
 <template>
     <div class="server-list">
-        <ServerIcon/>
-        <ServerIcon/>
-        <ServerIcon/>
-        <ServerIcon/>
-        <ServerIcon/>
-        <ServerIcon/>
-        <ServerIcon/>
+        <!-- Server Icons -->
     </div>
 </template>
 <style scoped>

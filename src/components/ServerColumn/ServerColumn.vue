@@ -9,14 +9,11 @@ import UserControls from "./UserControls.vue";
         <ServerList/>
         <div class="server-contents-col">
             <div class="server-header">
-                Server Name
+                <span id="servername">Server Name</span>
                 <i class="bi bi-chevron-down"></i>
             </div>
             <div class="server-channels">
-                <ChannelButton type="text" name="A random Channel"/>
-                <ChannelButton type="voice" name="Just a random Channel"/>
-                <ChannelButton type="text" name="Another random Channel"/>
-                <ChannelButton type="text" name="Gaming Channel"/>
+                <!-- Fill with Channels -->
             </div>
             <UserControls/>
         </div>
@@ -29,7 +26,7 @@ import UserControls from "./UserControls.vue";
     background-color:#4f4d8c;
     min-height:100vh;
     min-width:300px;
-    flex:1;
+    flex:0.9;
 }
 
 .server-contents-col {

@@ -1,6 +1,6 @@
 <template>
     <div class="user-controls">
-        <span>Username</span>
+        <span id="username">Username</span>
         <div class="controls">
             <i class="bi bi-mic-fill icon-big"></i>
             <i class="bi bi-headphones icon-big" style="font-size: 24px;"></i>
