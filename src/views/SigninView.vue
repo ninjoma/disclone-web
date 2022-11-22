@@ -1,6 +1,9 @@
 TODO disable button when not filled form register FIX .lr-form > label
 :not(.lr-checkbox > *)
 <script setup lang="ts">
+import TextInput from "../components/inputs/TextInput.vue";
+import CheckboxInput from "../components/inputs/CheckboxInput.vue";
+import { checkEmail } from "../assets/scripts.js";
 function changePage() {
   const login = document.getElementById("l-container"),
     register = document.getElementById("r-container");
@@ -12,6 +15,26 @@ function changePage() {
     register?.classList.remove("active");
   }
 }
+const registerComps = ["r-tos", "r-email", "r-password", "r-username"];
+window.addEventListener("input", (e) => {
+  if (registerComps.includes(e.target.id)) {
+    const rTos = document.getElementById("r-tos");
+    const rEmail = document.getElementById("r-email");
+    const rPassword = document.getElementById("r-password");
+    const rUsername = document.getElementById("r-username");
+    const rButton = document.getElementById("r-button");
+    if (
+      rTos.checked &&
+      checkEmail(rEmail.value.trim()) &&
+      rPassword.value !== "" &&
+      rUsername.value !== ""
+    ) {
+      rButton.disabled = false;
+    } else {
+      rButton.disabled = true;
+    }
+  }
+});
 </script>
 
 <template>
@@ -28,11 +51,11 @@ function changePage() {
         <div class="lr-form">
           <div>
             <label for="l-email">EMAIL O NÚMERO DE TELÉFONO</label>
-            <input class="lr-input" type="text" id="l-email" />
+            <TextInput id="l-email" />
           </div>
           <div>
             <label for="l-password">CONTRASEÑA</label>
-            <input class="lr-input" type="password" id="l-password" />
+            <TextInput id="l-password" type="password" />
           </div>
           <a href="#">¿Has olvidado tu contraseña?</a>
           <button>Iniciar Sesión</button>
@@ -54,29 +77,24 @@ function changePage() {
         <div class="lr-form">
           <div>
             <label for="r-email">EMAIL</label>
-            <input class="lr-input" type="text" id="r-email" />
+            <TextInput id="r-email" />
           </div>
           <div>
             <label for="r-username">NOMBRE DE USUARIO</label>
-            <input class="lr-input" type="text" id="r-username" />
+            <TextInput id="r-username" />
           </div>
           <div>
             <label for="r-password">CONTRASEÑA</label>
-            <input
-              class="lr-input"
-              v-model="algo"
-              type="password"
-              id="r-password"
-            />
+            <TextInput id="r-password" type="password" />
           </div>
           <div class="lr-checkbox">
-            <input type="checkbox" id="r-tos" />
+            <CheckboxInput id="r-tos" />
             <label for="r-tos"
               >He leido y aceptado los Términos de Servicios y Políticas de
               Privacidad de Disclone</label
             >
           </div>
-          <button>Continuar</button>
+          <button id="r-button" disabled>Continuar</button>
           <div>
             <a v-on:click="changePage()">¿Ya tienes cuenta?</a>
           </div>
@@ -88,17 +106,25 @@ function changePage() {
 
 <style scoped>
 .active {
-  display: flex !important;
+  transform: scale(1) !important;
+  opacity: 1 !important;
 }
 #r-container,
 #l-container {
-  display: none;
+  display: flex;
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  transform: scale(0);
   justify-content: center;
   height: 100vh;
   align-items: center;
+  -webkit-transform: scale(1);
+  transition: opacity 0.2s ease-in-out, transform 0.3s ease-in-out;
 }
+
 .r-content {
-  height: 480px;
+  height: 400px;
 }
 .l-content {
   height: 340px;
@@ -127,8 +153,9 @@ function changePage() {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
+  font-size: 14px;
   gap: 10px;
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
 }
 .lr-form div {
   width: 100%;
@@ -154,13 +181,21 @@ function changePage() {
   margin-top: 5px;
   transition: background-color 0.1s ease-in-out;
 }
+
 .lr-form button:hover {
   background-color: var(--secondary-color);
 }
-.lr-form > label :not(.lr-checkbox > *) {
+
+.lr-form button:disabled {
+  cursor: not-allowed;
+  background-color: gray;
+}
+
+.lr-form label:not(.lr-checkbox > *) {
   font-size: 12px;
   line-height: 16px;
   margin-bottom: 8px;
+  font-weight: bold;
 }
 .lr-checkbox {
   display: flex;
@@ -169,53 +204,16 @@ function changePage() {
 .lr-checkbox > * {
   cursor: pointer;
 }
-.lr-checkbox > input {
-  -webkit-appearance: none;
-  appearance: none;
-  margin-right: 10px;
-  width: 24px;
-  height: 24px;
-  border: 0.1px solid white;
-  border-radius: 7px;
-  place-content: center;
-}
-.lr-checkbox > input::before {
-  content: "";
-  display: block;
-  width: 22px;
-  height: 22px;
-  border-radius: 7px;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out;
-  background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHdpZHRoPSIxMiIgaGVpZ2h0PSI5IiB2aWV3Qm94PSIwIDAgMTIgOSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgPHBhdGggZD0iTTQuNTc1IDguOTc3cy0uNDA0LS4wMDctLjUzNi0uMTY1TC4wNTcgNS42NGwuODI5LTEuMjI3TDQuNDcgNy4yNjggMTAuOTIxLjA4NmwuOTIzIDEuMTAzLTYuODYzIDcuNjRjLS4xMzQtLjAwMy0uNDA2LjE0OC0uNDA2LjE0OHoiIGZpbGw9IiNGRkYiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPg0KPC9zdmc+");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: var(--main-color);
-}
-.lr-checkbox > input:checked::before {
-  transform: scale(1);
-}
+
 .lr-checkbox > label {
   font-size: 12px;
 }
-.lr-input {
-  border-radius: 3px;
-  border: 0;
-  height: 40px;
-  padding: 10px;
-  color: white;
-  background-color: var(--dark-color-2);
-  width: 100%;
-}
 
-.lr-input:focus-visible {
-  outline: none;
-}
 .onlyMobile {
   display: none;
 }
 
-@media screen and (max-height: 545px) {
+@media screen and (max-height: 464px) {
   #r-container {
     align-items: initial;
   }
