@@ -11,7 +11,7 @@
         height:100%;
         background-color: #4f4d8c;
     }
-    @media(max-width: 1024px){
+    @media(max-width: 968px){
         .users-col{
             display:none;
         }

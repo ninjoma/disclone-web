@@ -57,7 +57,6 @@ import Message from "./Message.vue";
     display:flex;
     align-items: center;
     bottom:0;
-    background-color:#4f4d8c;
 }
 
 .message-col-input > span {
@@ -74,7 +73,7 @@ import Message from "./Message.vue";
     height: 38px;
     border-radius: 5px;
     border: 0px;
-    background-color: #5F5DA6;
+    background-color: #4f4d8c;
     font-family: 'Open Sans';
     color:white;
     padding: 10px;
