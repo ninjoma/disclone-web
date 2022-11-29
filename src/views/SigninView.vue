@@ -18,22 +18,28 @@ function changePage() {
 }
 
 const registerComps = ["r-tos", "r-email", "r-password", "r-username"];
-window.addEventListener("input", (e) => {
+window.addEventListener("input", (e:any) => {
   if (registerComps.includes(e.target?.id)) {
-    const rButton = document.getElementById("r-button");
-    if (checkInputFields()) {
+    const rButton = document.getElementById(
+      "r-button"
+    ) as HTMLInputElement | null;
+    if (checkInputFields() && rButton) {
       rButton.disabled = false;
-    } else {
+    } else if(rButton){
       rButton.disabled = true;
     }
   }
 });
 
 function checkInputFields() {
-  const rTos = document.getElementById("r-tos"),
-    rEmail = document.getElementById("r-email"),
-    rPassword = document.getElementById("r-password"),
-    rUsername = document.getElementById("r-username");
+  const rTos = document.getElementById("r-tos") as HTMLInputElement | null;
+  const rEmail = document.getElementById("r-email") as HTMLInputElement | null;
+  const rPassword = document.getElementById(
+    "r-password"
+  ) as HTMLInputElement | null;
+  const rUsername = document.getElementById(
+    "r-username"
+  ) as HTMLInputElement | null;
   return (
     rTos?.checked &&
     checkEmail(rEmail?.value.trim()) &&
@@ -43,11 +49,11 @@ function checkInputFields() {
 }
 
 async function createAccount() {
-  if(!checkInputFields()) return;
-  const rEmail = document.getElementById("r-email"),
-    rPassword = document.getElementById("r-password"),
-    rUsername = document.getElementById("r-username");
-    let res = await fetch(import.meta.env.VITE_API_URL + "AddEditAsync", {
+  if (!checkInputFields()) return;
+  const rEmail = document.getElementById("r-email") as HTMLInputElement | null;
+  const rPassword = document.getElementById("r-password") as HTMLInputElement | null;
+  const rUsername = document.getElementById("r-username") as HTMLInputElement | null;;
+  let res = await fetch(import.meta.env.VITE_API_URL + "AddEditAsync", {
     method: "POST",
     headers: {
       Accept: "application/json",
