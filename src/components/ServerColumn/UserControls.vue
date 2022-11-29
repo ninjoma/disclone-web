@@ -1,3 +1,10 @@
+<script>
+export default {
+    
+}
+</script>
+
+
 <template>
     <div class="user-controls">
         <span id="username">Username</span>
