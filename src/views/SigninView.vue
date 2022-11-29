@@ -4,6 +4,7 @@ TODO disable button when not filled form register FIX .lr-form > label
 import TextInput from "../components/inputs/TextInput.vue";
 import CheckboxInput from "../components/inputs/CheckboxInput.vue";
 import { checkEmail } from "../assets/scripts.js";
+
 function changePage() {
   const login = document.getElementById("l-container"),
     register = document.getElementById("r-container");
@@ -15,26 +16,53 @@ function changePage() {
     register?.classList.remove("active");
   }
 }
+
 const registerComps = ["r-tos", "r-email", "r-password", "r-username"];
 window.addEventListener("input", (e) => {
-  if (registerComps.includes(e.target.id)) {
-    const rTos = document.getElementById("r-tos");
-    const rEmail = document.getElementById("r-email");
-    const rPassword = document.getElementById("r-password");
-    const rUsername = document.getElementById("r-username");
+  if (registerComps.includes(e.target?.id)) {
     const rButton = document.getElementById("r-button");
-    if (
-      rTos.checked &&
-      checkEmail(rEmail.value.trim()) &&
-      rPassword.value !== "" &&
-      rUsername.value !== ""
-    ) {
+    if (checkInputFields()) {
       rButton.disabled = false;
     } else {
       rButton.disabled = true;
     }
   }
 });
+
+function checkInputFields() {
+  const rTos = document.getElementById("r-tos"),
+    rEmail = document.getElementById("r-email"),
+    rPassword = document.getElementById("r-password"),
+    rUsername = document.getElementById("r-username");
+  return (
+    rTos?.checked &&
+    checkEmail(rEmail?.value.trim()) &&
+    rPassword?.value.trim() !== "" &&
+    rUsername?.value.trim() !== ""
+  );
+}
+
+async function createAccount() {
+  if(!checkInputFields()) return;
+  const rEmail = document.getElementById("r-email"),
+    rPassword = document.getElementById("r-password"),
+    rUsername = document.getElementById("r-username");
+    let res = await fetch(import.meta.env.VITE_API_URL + "AddEditAsync", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: `{
+    email: ${rEmail?.value.trim()},
+    username: ${rUsername?.value.trim()},
+    password: ${rPassword?.value.trim()},
+    }`,
+  });
+  res.json().then((data) => {
+    console.log(data);
+  });
+}
 </script>
 
 <template>
@@ -89,12 +117,12 @@ window.addEventListener("input", (e) => {
           </div>
           <div class="lr-checkbox">
             <CheckboxInput id="r-tos" />
-            <label for="r-tos"
-              >He leido y aceptado los Términos de Servicios y Políticas de
-              Privacidad de Disclone</label
-            >
+            <label for="r-tos">
+              He leido y aceptado los Términos de Servicios y Políticas de
+              Privacidad de Disclone
+            </label>
           </div>
-          <button id="r-button" disabled>Continuar</button>
+          <button id="r-button" disabled v-on:click="createAccount()">Continuar</button>
           <div>
             <a v-on:click="changePage()">¿Ya tienes cuenta?</a>
           </div>
@@ -106,8 +134,8 @@ window.addEventListener("input", (e) => {
 
 <style scoped>
 .active {
-  transform: scale(1) !important;
   opacity: 1 !important;
+  z-index: 1;
 }
 #r-container,
 #l-container {
@@ -115,11 +143,9 @@ window.addEventListener("input", (e) => {
   position: absolute;
   opacity: 0;
   width: 100%;
-  transform: scale(0);
   justify-content: center;
   height: 100vh;
   align-items: center;
-  -webkit-transform: scale(1);
   transition: opacity 0.2s ease-in-out, transform 0.3s ease-in-out;
 }
 
