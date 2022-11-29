@@ -1,6 +1,6 @@
-<<<<<<< HEAD
+
 # disclone-web
-=======
+
 # vue-project
 
 This template should help get you started developing with Vue 3 in Vite.
@@ -47,4 +47,3 @@ npm run build
 ```sh
 npm run lint
 ```
->>>>>>> e9acf97... Initial Commit
