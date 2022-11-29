@@ -1,5 +1,8 @@
-<script setup lang="ts">
+<script type="js">
 import ServerIcon from "./ServerIcon.vue";
+export default {
+    
+}
 </script>
 
 <template>

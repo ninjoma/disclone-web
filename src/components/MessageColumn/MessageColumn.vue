@@ -1,5 +1,9 @@
-<script setup lang="ts">
+<script lang="ts">
 import Message from "./Message.vue";
+
+export default {
+    
+}
 </script>
 
 <template>

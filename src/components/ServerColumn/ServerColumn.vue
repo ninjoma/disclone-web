@@ -1,7 +1,16 @@
-<script setup lang="ts">
+<script>
 import ServerList from "./ServerList.vue";
 import ChannelButton from "./ChannelButton.vue";
 import UserControls from "./UserControls.vue";
+
+export default {
+    components: {
+        UserControls,
+        ServerList,
+        ChannelButton
+    }
+}
+
 </script>
 
 <template>
