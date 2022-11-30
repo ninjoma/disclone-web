@@ -18,21 +18,50 @@ function changePage() {
 }
 
 const registerComps = ["r-tos", "r-email", "r-password", "r-username"];
-window.addEventListener("input", (e:any) => {
+window.addEventListener("input", (e: any) => {
   if (registerComps.includes(e.target?.id)) {
     const rButton = document.getElementById(
       "r-button"
     ) as HTMLInputElement | null;
-    if (checkInputFields() && rButton) {
+    if (checkInputFields("register") && rButton) {
       rButton.disabled = false;
-    } else if(rButton){
+    } else if (rButton) {
       rButton.disabled = true;
     }
   }
 });
 
-function checkInputFields() {
-  const rTos = document.getElementById("r-tos") as HTMLInputElement | null;
+function checkInputFields(type: string) {
+  if (type === "login") {
+    const lEmail = document.getElementById(
+      "l-email"
+    ) as HTMLInputElement | null;
+    const lPassword = document.getElementById(
+      "l-password"
+    ) as HTMLInputElement | null;
+    return lEmail?.value.trim() !== "" && lPassword?.value.trim() !== "";
+  } else if (type === "register") {
+    const rTos = document.getElementById("r-tos") as HTMLInputElement | null;
+    const rEmail = document.getElementById(
+      "r-email"
+    ) as HTMLInputElement | null;
+    const rPassword = document.getElementById(
+      "r-password"
+    ) as HTMLInputElement | null;
+    const rUsername = document.getElementById(
+      "r-username"
+    ) as HTMLInputElement | null;
+    return (
+      rTos?.checked &&
+      checkEmail(rEmail?.value.trim()) &&
+      rPassword?.value.trim() !== "" &&
+      rUsername?.value.trim() !== ""
+    );
+  }
+}
+
+async function createAccount() {
+  if (!checkInputFields("register")) return;
   const rEmail = document.getElementById("r-email") as HTMLInputElement | null;
   const rPassword = document.getElementById(
     "r-password"
@@ -40,19 +69,6 @@ function checkInputFields() {
   const rUsername = document.getElementById(
     "r-username"
   ) as HTMLInputElement | null;
-  return (
-    rTos?.checked &&
-    checkEmail(rEmail?.value.trim()) &&
-    rPassword?.value.trim() !== "" &&
-    rUsername?.value.trim() !== ""
-  );
-}
-
-async function createAccount() {
-  if (!checkInputFields()) return;
-  const rEmail = document.getElementById("r-email") as HTMLInputElement | null;
-  const rPassword = document.getElementById("r-password") as HTMLInputElement | null;
-  const rUsername = document.getElementById("r-username") as HTMLInputElement | null;;
   let res = await fetch(import.meta.env.VITE_API_URL + "AddEditAsync", {
     method: "POST",
     headers: {
@@ -60,14 +76,25 @@ async function createAccount() {
       "Content-Type": "application/json",
     },
     body: `{
-    email: ${rEmail?.value.trim()},
-    username: ${rUsername?.value.trim()},
-    password: ${rPassword?.value.trim()},
+    Id: 0,
+    Email: ${rEmail?.value.trim()},
+    Username: ${rUsername?.value.trim()},
+    Password: ${rPassword?.value.trim()},
+    Image: ,
+    CreationDate: ${Date.now()},
+    IsActive: true,
     }`,
   });
   res.json().then((data) => {
     console.log(data);
   });
+}
+
+async function loginAccount() {
+  if (!checkInputFields("login")) return;
+  let res = await fetch(import.meta.env.VITE_API_URL + "GetUser");
+  
+  console.log(res.body ? "Existe" : "No Existe");
 }
 </script>
 
@@ -92,7 +119,7 @@ async function createAccount() {
             <TextInput id="l-password" type="password" />
           </div>
           <a href="#">¿Has olvidado tu contraseña?</a>
-          <button>Iniciar Sesión</button>
+          <button v-on:click="loginAccount()">Iniciar Sesión</button>
           <div>
             ¿Necesitas una cuenta?
             <a v-on:click="changePage()">Regístrate</a>
