@@ -1,9 +1,11 @@
-TODO disable button when not filled form register FIX .lr-form > label
-:not(.lr-checkbox > *)
 <script setup lang="ts">
 import TextInput from "../components/inputs/TextInput.vue";
 import CheckboxInput from "../components/inputs/CheckboxInput.vue";
 import { checkEmail } from "../assets/scripts.js";
+import type { VueCookies } from "vue-cookies";
+import { inject } from 'vue';
+import router from "@/router";
+const $cookies = inject<VueCookies>('$cookies');
 
 function changePage() {
   const login = document.getElementById("l-container"),
@@ -52,21 +54,43 @@ async function createAccount() {
   if (!checkInputFields()) return;
   const rEmail = document.getElementById("r-email") as HTMLInputElement | null;
   const rPassword = document.getElementById("r-password") as HTMLInputElement | null;
-  const rUsername = document.getElementById("r-username") as HTMLInputElement | null;;
-  let res = await fetch(import.meta.env.VITE_API_URL + "AddEditAsync", {
+  const rUsername = document.getElementById("r-username") as HTMLInputElement | null;
+  let res = await fetch(import.meta.env.VITE_API_URL + "Users/AddEditAsync", {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: `{
-    email: ${rEmail?.value.trim()},
-    username: ${rUsername?.value.trim()},
-    password: ${rPassword?.value.trim()},
-    }`,
+    body: JSON.stringify({
+    email: rEmail?.value.trim(),
+    username: rUsername?.value.trim(),
+    password: rPassword?.value.trim(),
+    }),
   });
-  res.json().then((data) => {
-    console.log(data);
+  if(res.status == 200){
+    changePage();
+  }
+}
+
+async function login() {
+  const lPassword = document.getElementById("l-password") as HTMLInputElement | null;
+  const lUsername = document.getElementById("l-username") as HTMLInputElement | null;
+  let res = await fetch(import.meta.env.VITE_API_URL + "Users/login", {
+    method: "POST",
+    headers: {
+      Accept: "*/*",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: lUsername?.value.trim(),
+      password: lPassword?.value.trim(),
+    }),
+  });
+  res.text().then((txt) => { 
+    if(res.status == 200){
+      $cookies?.set("jwt", txt);
+    }
+    router.push("home")
   });
 }
 </script>
@@ -84,15 +108,15 @@ async function createAccount() {
         </div>
         <div class="lr-form">
           <div>
-            <label for="l-email">EMAIL O NÚMERO DE TELÉFONO</label>
-            <TextInput id="l-email" />
+            <label for="l-username">NOMBRE DE USUARIO</label>
+            <TextInput id="l-username" />
           </div>
           <div>
             <label for="l-password">CONTRASEÑA</label>
             <TextInput id="l-password" type="password" />
           </div>
           <a href="#">¿Has olvidado tu contraseña?</a>
-          <button>Iniciar Sesión</button>
+          <button v-on:click="login()">Iniciar Sesión</button>
           <div>
             ¿Necesitas una cuenta?
             <a v-on:click="changePage()">Regístrate</a>
