@@ -43,7 +43,7 @@ export default {
 
 <template>
     <div ref="serverlist" class="server-list">
-        <ServerIcon v-for="server in servers" name="server.name" />
+        <ServerIcon v-for="server in servers" :name=server.servername />
     </div>
 </template>
 <style scoped>
@@ -56,8 +56,8 @@ export default {
     flex-direction: column;
     align-items: center;
     padding:5px;
-    padding-top:15px;
-    padding-bottom:15px;
+    padding-top:5px;
+    padding-bottom:5px;
     gap: 7px;
     overflow:hidden;
     overflow-y:scroll;
