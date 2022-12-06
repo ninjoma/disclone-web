@@ -1,7 +1,16 @@
-<script setup lang="ts">
+<script lang="ts">
 import ServerColumn from "../components/ServerColumn/ServerColumn.vue";
 import MessageColumn from "../components/MessageColumn/MessageColumn.vue";
 import UsersColumn from "../components/UsersColumn.vue";
+
+export default {
+    components: {
+        UsersColumn,
+        ServerColumn,
+        MessageColumn
+    }
+}
+
 </script>
 
 <template>

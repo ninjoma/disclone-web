@@ -1,5 +1,6 @@
 <script lang="ts">
 export default {
+    props: ['name', 'id'],
     data() {
         return {
             active: false
@@ -10,9 +11,9 @@ export default {
 
 <template>
     <div class="server-icon" v-on:mouseenter="active = true" v-on:mouseleave="active = false">
-        SE
+        {{ name.substring(0,2) }}
         <div v-if="active" class="annotation">
-        Server Name
+        {{ name }}
         </div>
     </div>
 </template>

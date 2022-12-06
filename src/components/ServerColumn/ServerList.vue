@@ -1,10 +1,49 @@
-<script setup lang="ts">
+<script lang="ts">
 import ServerIcon from "./ServerIcon.vue";
+import router from "@/router";
+import type { VueCookies } from "vue-cookies";
+import { inject } from 'vue';
+import * as Vue from 'vue';
+
+export default {
+    setup(){
+        const $cookies = inject<VueCookies>('$cookies');
+        return {
+            $cookies,
+        }
+    },
+    data() {
+        let servers: any = [];
+        return {
+            servers
+        }
+    },
+    mounted: async function(){
+        let res = await fetch(import.meta.env.VITE_API_URL + "Member/fetchServers", {
+            method: "GET",
+            headers: new Headers({
+                'Accept': "*/*",
+                "Content-Type": "application/json",
+                'Authorization': "Bearer " + this.$cookies?.get("jwt")
+            })
+        })
+        res.json().then((result: Array<any>) => {
+            result.forEach(entry => {
+                this.servers.push({id: entry.serverId, servername: entry.server.name})
+            });
+            console.log(this.servers)
+        })
+    },
+    components: {
+        ServerIcon
+    }
+}
+
 </script>
 
 <template>
-    <div class="server-list">
-        <!-- Server Icons -->
+    <div ref="serverlist" class="server-list">
+        <ServerIcon v-for="server in servers" name="server.name" />
     </div>
 </template>
 <style scoped>
@@ -17,6 +56,8 @@ import ServerIcon from "./ServerIcon.vue";
     flex-direction: column;
     align-items: center;
     padding:5px;
+    padding-top:15px;
+    padding-bottom:15px;
     gap: 7px;
     overflow:hidden;
     overflow-y:scroll;
