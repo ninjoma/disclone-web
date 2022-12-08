@@ -1,7 +1,7 @@
 <script lang="ts">
 import ServerColumn from "../components/ServerColumn/ServerColumn.vue";
 import MessageColumn from "../components/MessageColumn/MessageColumn.vue";
-import UsersColumn from "../components/UsersColumn.vue";
+import UsersColumn from "../components/UserColumn/UsersColumn.vue";
 
 export default {
     components: {
@@ -17,7 +17,7 @@ export default {
     <div class="fill-height">
         <div class="view-columns">
             <ServerColumn/>
-            <div class="header-bar-container">
+            <div class="message-container">
                 <div class="message-col-header">
                     <i class="bi bi-quote icon-big"></i> <span id="currentchannelname">Current Channel Name</span>
                 </div>
@@ -33,19 +33,24 @@ export default {
 <style scoped>
 .fill-height {
     background-color: #5F5DA6;
-    min-height:100vh;
+    min-height:auto;
 }
 .view-columns{
     display:flex;
 }
 
-.header-bar-container {
-    min-height:100vh; max-height:100vh; display:flex; flex-direction:column; flex:3.8;
-}
-
 .message-column {
     display:flex; 
     flex:1;
+    max-height:100vh;
+    overflow:hidden;
+}
+
+.message-container{
+    height:100vh;
+    display:flex;
+    flex-direction: column;
+    width:100%;
 }
 
 .message-col-header{

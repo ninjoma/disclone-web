@@ -7,9 +7,9 @@ import * as Vue from 'vue';
 
 export default {
     setup(){
-        const $cookies = inject<VueCookies>('$cookies');
+        const cookies = inject<VueCookies>('$cookies');
         return {
-            $cookies,
+            cookies,
         }
     },
     data() {
@@ -24,14 +24,13 @@ export default {
             headers: new Headers({
                 'Accept': "*/*",
                 "Content-Type": "application/json",
-                'Authorization': "Bearer " + this.$cookies?.get("jwt")
+                'Authorization': "Bearer " + this.cookies?.get("jwt")
             })
         })
         res.json().then((result: Array<any>) => {
             result.forEach(entry => {
                 this.servers.push({id: entry.serverId, servername: entry.server.name})
             });
-            console.log(this.servers)
         })
     },
     components: {
@@ -43,7 +42,7 @@ export default {
 
 <template>
     <div ref="serverlist" class="server-list">
-        <ServerIcon v-for="server in servers" :name=server.servername />
+        <ServerIcon v-for="server in servers" :name=server.servername :id=server.id />
     </div>
 </template>
 <style scoped>

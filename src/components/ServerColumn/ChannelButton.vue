@@ -1,6 +1,6 @@
 <script lang="ts">
 export default {
-  props: ['type', 'name']
+  props: ['type', 'name', 'id']
 }
 </script>
 

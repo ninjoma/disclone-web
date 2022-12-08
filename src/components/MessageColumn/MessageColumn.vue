@@ -1,11 +1,16 @@
-<script setup lang="ts">
+<script lang="ts">
 import Message from "./Message.vue";
+
+export default {
+    components: {
+        Message
+    }
+}
 </script>
 
 <template>
     <div class="messages-col">
         <div class="message-col-body">
-            
         </div>
         <div class="message-col-input">
             <span><input class="message-input" placeholder="Enter a message..."></span>
@@ -16,22 +21,21 @@ import Message from "./Message.vue";
 <style scoped>
 
 .messages-col {
-    flex:4;
     height:100%;
-    max-height:100%;
     display:flex;
     flex-direction: column;
+    width:100%;
     justify-content: space-between;
 }
+
 
 .message-col-body {
     width:100%;
     padding-left:20px;
     padding-right:20px;
     overflow-y: auto;
-    flex: 1;
-    flex-basis: 0;
-    min-height: 0;
+    margin-top:auto;
+    bottom: 0;
 }
 
 

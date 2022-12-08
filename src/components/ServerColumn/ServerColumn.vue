@@ -2,12 +2,52 @@
 import ServerList from "./ServerList.vue";
 import ChannelButton from "./ChannelButton.vue";
 import UserControls from "./UserControls.vue";
+import type { VueCookies } from "vue-cookies";
+import { inject } from 'vue';
 
 export default {
+    data() {
+        let channels: any = [];
+        const cookies = inject<VueCookies>('$cookies');
+        return {
+            cookies,
+            channels
+        }
+    },
     components: {
         ChannelButton,
         UserControls,
         ServerList
+    },
+    created(){
+        this.$watch(() => this.$route.params,
+        () => {
+            this.fetchInfo();
+        })
+    },
+    mounted(){
+        this.fetchInfo();
+    },
+    methods: {
+        fetchInfo: async function(){
+            var serverid = this.$route.query.id;
+            if(serverid == null){
+                return;
+            }
+            let res = await fetch(import.meta.env.VITE_API_URL + "Channel/ListByServer/" + serverid, {
+                method: "GET",
+                headers: new Headers({
+                    'Accept': "*/*",
+                    "Content-Type": "application/json",
+                    'Authorization': "Bearer " + this.cookies?.get("jwt")
+                })
+            })
+            res.json().then((result: Array<any>) => {
+                result.forEach(entry => {
+                    this.channels.push({id: entry.id, name: entry.name, type: entry.type == 0 ? "text" : "voice"})
+                });
+            })
+        }
     }
 }
 </script>
@@ -21,7 +61,7 @@ export default {
                 <i class="bi bi-chevron-down"></i>
             </div>
             <div class="server-channels">
-                <!-- Fill with Channels -->
+                <ChannelButton v-for="channel in channels" :name=channel.name :id=channel.id :type=channel.type />
             </div>
             <UserControls/>
         </div>
@@ -32,13 +72,11 @@ export default {
 .server-col {
     display:flex;
     background-color:#4f4d8c;
-    min-height:100vh;
     min-width:300px;
-    flex:0.9;
+    height:100%;
 }
 
 .server-contents-col {
-    height:100%;
     width:100%; 
     display:flex; 
     flex-direction: column;

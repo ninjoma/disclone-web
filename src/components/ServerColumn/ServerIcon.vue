@@ -5,12 +5,20 @@ export default {
         return {
             active: false
         }
+    },
+    methods: {
+        redirect: function(){
+            this.$router.push({
+                name: 'server',
+                query: { id: this.id },
+            } as any)
+        }
     }
 }
 </script>
 
 <template>
-    <div class="server-icon" v-on:mouseenter="active = true" v-on:mouseleave="active = false">
+    <div class="server-icon" v-on:mouseenter="active = true" v-on:mouseleave="active = false" v-on:click="redirect">
         {{ name.substring(0,2) }}
         <div v-if="active" class="annotation">
         {{ name }}

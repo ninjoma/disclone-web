@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ServerView from '../views/ServerView.vue';
 import SettingsView from '../views/SettingsView.vue';
 import SigninView from '../views/SigninView.vue';
-import HomeView from '../views/HomeView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,16 +31,8 @@ const router = createRouter({
       }
     },
     {
-      path: '/home',
-      name: 'home',
-      component: HomeView,
-      meta: {
-        requiresAuth: true,
-      }
-    },
-    {
       path: '/:catchAll(.*)',
-      redirect: '/home'
+      redirect: '/server'
     }
   ]
 })
