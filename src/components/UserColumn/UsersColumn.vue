@@ -11,9 +11,9 @@ export default {
         }
     },
     data() {
-        let users: any = [];
+        let members: any = [];
         return {
-            users
+            members
         }
     },
     created(){
@@ -27,7 +27,8 @@ export default {
     },
     methods: {
         fetchInfo: async function(){
-            var serverid = this.$route.query.id;
+            this.members = [];
+            var serverid: any = this.$route.query.id;
             if(serverid == null){
                 return;
             }
@@ -41,7 +42,7 @@ export default {
             })
             res.json().then((result: Array<any>) => {
                 result.forEach(entry => {
-                    this.users.push({id: entry.id, nickName: entry.nickName})
+                    this.members.push({id: entry.id, username: entry.user.userName})
                 });
             })
         },
@@ -53,7 +54,7 @@ export default {
 </script>
 <template>
     <div class="users-col">
-        <UserItem v-for="user in users" :name=user.nickName :id=user.id /> 
+        <UserItem v-for="member in members" :name=member.username :id=member.id /> 
     </div>
 </template>
 

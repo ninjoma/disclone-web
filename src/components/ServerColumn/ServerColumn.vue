@@ -8,10 +8,12 @@ import { inject } from 'vue';
 export default {
     data() {
         let channels: any = [];
+        const user: any = {};
         const cookies = inject<VueCookies>('$cookies');
         return {
             cookies,
-            channels
+            channels,
+            user,
         }
     },
     components: {
@@ -30,11 +32,12 @@ export default {
     },
     methods: {
         fetchInfo: async function(){
-            var serverid = this.$route.query.id;
+            this.channels = [];
+            var serverid: any = this.$route.query.id;
             if(serverid == null){
                 return;
             }
-            let res = await fetch(import.meta.env.VITE_API_URL + "Channel/ListByServer/" + serverid, {
+            let channelres = await fetch(import.meta.env.VITE_API_URL + "Channel/ListByServer/" + serverid, {
                 method: "GET",
                 headers: new Headers({
                     'Accept': "*/*",
@@ -42,13 +45,26 @@ export default {
                     'Authorization': "Bearer " + this.cookies?.get("jwt")
                 })
             })
-            res.json().then((result: Array<any>) => {
+            let userres = await fetch(import.meta.env.VITE_API_URL + "User/getUserInfo/", {
+                method: "GET",
+                headers: new Headers({
+                    'Accept': "*/*",
+                    "Content-Type": "application/json",
+                    'Authorization': "Bearer " + this.cookies?.get("jwt")
+                })
+            })
+            channelres.json().then((result: Array<any>) => {
                 result.forEach(entry => {
                     this.channels.push({id: entry.id, name: entry.name, type: entry.type == 0 ? "text" : "voice"})
                 });
             })
-        }
-    }
+            userres.json().then((result: any)=> {
+                console.log(userres)
+                this.user.userName = result.userName;
+            });
+        },
+
+    },
 }
 </script>
 
@@ -63,7 +79,7 @@ export default {
             <div class="server-channels">
                 <ChannelButton v-for="channel in channels" :name=channel.name :id=channel.id :type=channel.type />
             </div>
-            <UserControls/>
+            <UserControls v-if="user" :username="user.userName"/>
         </div>
     </div>
 </template>

@@ -15,7 +15,7 @@ export default {
 </script>
 <template>
 <div class="container">
-    <div class="image" :style="{background:generateRandomBckg()}">
+    <div class="image" :style="{ background:generateRandomBckg() }">
 
     </div>
     <div>

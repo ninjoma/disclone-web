@@ -1,7 +1,68 @@
 <script lang="ts">
 import Message from "./Message.vue";
+import type { VueCookies } from "vue-cookies";
+import { inject } from 'vue';
 
 export default {
+    data() {
+        const cookies = inject<VueCookies>('$cookies');
+        let messages = [];
+        let messageInput = "";
+        return {
+            cookies,
+            messageInput,
+            messages
+        }
+    },
+    created(){
+        this.$watch(() => this.$route.params,
+        () => {
+            this.fetchInfo();
+        })
+    },
+    mounted(){
+        this.fetchInfo();
+    },
+    methods: {
+        sendMessage: async function(){
+            var channelid = this.$route.query.channel;
+            if(channelid == null && this.messageInput.length > 0){
+                return;
+            }
+            let res = await fetch(import.meta.env.VITE_API_URL + "Message/sendMessage", {
+                method: "POST",
+                headers: new Headers({
+                    'Accept': "*/*",
+                    "Content-Type": "application/json",
+                    'Authorization': "Bearer " + this.cookies?.get("jwt")
+                }),
+                body: JSON.stringify({
+                    channelId: channelid,
+                    content: this.messageInput
+                })
+            })
+            this.messageInput = "";
+        },
+        fetchInfo: async function(){
+            this.messages = [];
+            var channelid: any = this.$route.query.channel;
+            let res = await fetch(import.meta.env.VITE_API_URL + "Message/getMessagesFromChannel/" + channelid, {
+                method: "GET",
+                headers: new Headers({
+                    'Accept': "*/*",
+                    "Content-Type": "application/json",
+                    'Authorization': "Bearer " + this.cookies?.get("jwt")
+                })
+            })
+            res.json().then((result: Array<any>) => {
+                result.forEach(entry => {
+                    var messageDate = new Date(entry.creationDate)
+                    var messageDateString = messageDate.getHours() + ":" + messageDate.getMinutes();
+                    this.messages.push({date: messageDateString, user: entry.user.userName, text: entry.content})
+                });
+            })
+        }
+    },
     components: {
         Message
     }
@@ -11,9 +72,10 @@ export default {
 <template>
     <div class="messages-col">
         <div class="message-col-body">
+            <Message v-for="message in messages" :date="message.date" :user="message.user" :text="message.text"/>
         </div>
         <div class="message-col-input">
-            <span><input class="message-input" placeholder="Enter a message..."></span>
+            <span><input class="message-input" v-model="messageInput" placeholder="Enter a message..." v-on:keyup.enter="sendMessage"></span>
         </div>
     </div>
 </template>
