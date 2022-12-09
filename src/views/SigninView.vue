@@ -12,10 +12,6 @@ import registerComponent from "../components/SigninComponents/RegisterComponent.
 </template>
 
 <style scoped>
-.active {
-  opacity: 1 !important;
-  z-index: 1;
-}
 .rl-bg {
   position: absolute;
   top: 0;
