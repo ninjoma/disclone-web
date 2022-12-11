@@ -2,12 +2,14 @@
 import ServerColumn from "../components/ServerColumn/ServerColumn.vue";
 import MessageColumn from "../components/MessageColumn/MessageColumn.vue";
 import UsersColumn from "../components/UserColumn/UsersColumn.vue";
+import SearchInput from "../components/inputs/SearchInput.vue";
 
 export default {
     components: {
         UsersColumn,
         ServerColumn,
-        MessageColumn
+        MessageColumn,
+        SearchInput
     }
 }
 
@@ -19,7 +21,10 @@ export default {
             <ServerColumn/>
             <div class="message-container">
                 <div class="message-col-header">
-                    <i class="bi bi-quote icon-big"></i> <span id="currentchannelname">Current Channel Name</span>
+                    <div>
+                        <i class="bi bi-quote icon-big"></i> <span id="currentchannelname">Current Channel Name</span>
+                    </div>
+                    <SearchInput/>
                 </div>
                 <div class="message-column">
                     <MessageColumn/>
@@ -60,6 +65,7 @@ export default {
     height:50px;
     width:100%;
     display:flex;
+    justify-content:space-between;
     align-items: center;
     padding:10px;
     padding-left:16px;

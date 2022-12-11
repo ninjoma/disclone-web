@@ -8,12 +8,14 @@ import { inject } from 'vue';
 export default {
     data() {
         let channels: any = [];
+        let servername = "";
         const user: any = {};
         const cookies = inject<VueCookies>('$cookies');
         return {
             cookies,
             channels,
             user,
+            servername
         }
     },
     components: {
@@ -54,6 +56,7 @@ export default {
                 })
             })
             channelres.json().then((result: Array<any>) => {
+                this.servername = result[0].server.name
                 result.forEach(entry => {
                     this.channels.push({id: entry.id, name: entry.name, type: entry.type == 0 ? "text" : "voice"})
                 });
@@ -73,7 +76,7 @@ export default {
         <ServerList/>
         <div class="server-contents-col">
             <div class="server-header">
-                <span id="servername">Server Name</span>
+                <span id="servername">{{ servername }}</span>
                 <i class="bi bi-chevron-down"></i>
             </div>
             <div class="server-channels">
