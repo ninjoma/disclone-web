@@ -3,8 +3,46 @@ import ServerColumn from "../components/ServerColumn/ServerColumn.vue";
 import MessageColumn from "../components/MessageColumn/MessageColumn.vue";
 import UsersColumn from "../components/UserColumn/UsersColumn.vue";
 import SearchInput from "../components/inputs/SearchInput.vue";
+import type { VueCookies } from "vue-cookies";
+import { inject } from 'vue';
 
 export default {
+    data() {
+        const cookies = inject<VueCookies>('$cookies');
+        var channelname = "";
+        return {
+            cookies,
+            channelname
+        }
+    },
+    created(){
+        this.$watch(() => this.$route.params,
+        () => {
+            this.fetchInfo();
+        })
+    },
+    mounted(){
+        this.fetchInfo();
+    },
+    methods: {
+        fetchInfo: async function(){
+            if(!this.$route.query.channel){
+                return
+            }
+            let res = await fetch(import.meta.env.VITE_API_URL + "Channel/GetByIdAsync/" + this.$route.query.channel, {
+                method: "GET",
+                headers: new Headers({
+                    'Accept': "*/*",
+                    "Content-Type": "application/json",
+                    'Authorization': "Bearer " + this.cookies?.get("jwt")
+                }),
+            });
+            res.json().then((r) => {
+                console.log(r);
+                this.channelname = r.name
+            })
+        }   
+    },
     components: {
         UsersColumn,
         ServerColumn,
@@ -22,7 +60,7 @@ export default {
             <div class="message-container">
                 <div class="message-col-header">
                     <div>
-                        <i class="bi bi-quote icon-big"></i> <span id="currentchannelname">Current Channel Name</span>
+                        <i class="bi bi-quote icon-big"></i> <span id="currentchannelname">{{ channelname }}</span>
                     </div>
                     <SearchInput/>
                 </div>

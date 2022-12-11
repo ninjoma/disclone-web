@@ -6,7 +6,7 @@ import { inject } from 'vue';
 export default {
     data() {
         const cookies = inject<VueCookies>('$cookies');
-        let messages = [];
+        let messages: any[] = [];
         let messageInput = "";
         return {
             cookies,
@@ -42,6 +42,7 @@ export default {
                 })
             })
             this.messageInput = "";
+            window.location.reload();
         },
         fetchInfo: async function(){
             this.messages = [];
@@ -55,6 +56,9 @@ export default {
                 })
             })
             res.json().then((result: Array<any>) => {
+                if(this.$route.query.messageQuery){
+                    result = result.filter((entry) => entry.content.includes(this.$route.query.messageQuery) || entry.user.userName.includes(this.$route.query.messageQuery));
+                }
                 result.forEach(entry => {
                     var messageDate = new Date(entry.creationDate)
                     var messageDateString = messageDate.getHours() + ":" + messageDate.getMinutes();

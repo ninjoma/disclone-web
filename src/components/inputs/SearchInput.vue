@@ -1,13 +1,21 @@
 <script lang="ts">
-
-
-
 export default {
     methods: {
         SearchMessages: function(){
-            var query: any = this.$route.params;
-            query.messagequery = (this.$refs as any).search.value;
-            this.$router.push({ name: "server", query: query });
+            var query: any = this.$route.query;
+            console.log(query)
+            if(query.id == null){ 
+                return;
+            }
+            if(query.channel == null){
+                return;
+            }
+            var querybody: any = {id: query.id, channel: query.channel};
+            var message;
+            if((this.$refs as any).search.value.trim().length > 1){
+                querybody.messageQuery = (this.$refs as any).search.value
+            }
+            this.$router.push({ name: "server", query: querybody });
         }
     }
 };
