@@ -18,6 +18,6 @@ import registerComponent from "../components/SigninComponents/RegisterComponent.
   left: 0;
   width: 100%;
   height: 100vh;
-  background-image: url("https://wallpapercrafter.com/th800/107454-Discord-dark-background.png");
+  background-image: url("https://images-ext-1.discordapp.net/external/SXMP-tiLu-A5ThDh8fZ3JwfRCh_qqTTtvjrrcIiMX5Q/https/discord.com/assets/d20e43cdcadf850cfd8d4e953df0f3b4.png");
 }
 </style>

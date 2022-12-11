@@ -50,23 +50,21 @@ export default {
       const rUsername = document.getElementById(
         "r-username"
       ) as HTMLInputElement | null;
-      let res = await fetch(
-        import.meta.env.VITE_API_URL + "Users/AddEditAsync",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: rEmail?.value.trim(),
-            username: rUsername?.value.trim(),
-            password: rPassword?.value.trim(),
-          }),
-        }
-      );
+      let res = await fetch(import.meta.env.VITE_API_URL + "User/Register", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          isActive: true,
+          email: rEmail?.value.trim(),
+          username: rUsername?.value.trim(),
+          password: rPassword?.value.trim(),
+        }),
+      });
       if (res.status == 200) {
-        this.changePage();
+        location.reload();
       }
     },
     toggleButton: function (e: any) {

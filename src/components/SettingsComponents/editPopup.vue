@@ -10,6 +10,52 @@ export default {
         .getElementById("editpopup-" + this.id)
         ?.classList.remove("active");
     },
+
+    action: async function () {
+      let value = document.getElementById("editpopup-input-" + this.id).value;
+      console.log(this.$parent?.$cookies.get("jwt"));
+      let result = await this.getUserInfo();
+      let otherProperty = this.property === "email" ? "userName" : "email";
+      let otherValue = result[otherProperty];
+
+      let res = await fetch(
+        import.meta.env.VITE_API_URL + "User/AddEditAsync",
+        {
+          method: "POST",
+          headers: new Headers({
+            Accept: "*/*",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + this.$parent?.$cookies?.get("jwt"),
+          }),
+          body: JSON.stringify({
+            isActive: result.isActive,
+            image: result.image,
+            id: result.id,
+            [this.property]: value.trim(),
+            [otherProperty]: otherValue,
+          }),
+        }
+      );
+      res.json().then((r) => {
+        if (res.status === 200) {
+          location.reload();
+        }
+      });
+    },
+
+    getUserInfo: async function () {
+      let res = await fetch(import.meta.env.VITE_API_URL + "User/getUserInfo", {
+        method: "GET",
+        headers: new Headers({
+          Accept: "*/*",
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + this.$parent?.$cookies?.get("jwt"),
+        }),
+      });
+      return res.json().then((result: any) => {
+        return result;
+      });
+    },
   },
 };
 </script>
@@ -31,16 +77,16 @@ export default {
             :type="type === `password` ? `password` : `text`"
           />
         </div>
-        <div>
+        <!-- <div>
           <label for="editpopup-currentpassword">CONTRASEÑA ACTUAL</label>
-          <TextInput id="editpopup-currentpassword" type="password" />
-        </div>
+          <TextInput :id="`editpopup-currentpassword-` + id" type="password" />
+        </div> -->
       </div>
       <div class="editpopup-buttons">
         <button class="editpopup-cancel" v-on:click="closePopup()">
           Cancelar
         </button>
-        <button class="editpopup-accept">Aceptar</button>
+        <button class="editpopup-accept" v-on:click="action()">Aceptar</button>
       </div>
     </div>
   </div>

@@ -3,11 +3,14 @@ import TextInput from "../inputs/TextInput.vue";
 import type { VueCookies } from "vue-cookies";
 import { inject } from "vue";
 import router from "@/router";
-const $cookies = inject<VueCookies>("$cookies");
 
 export default {
   components: {
     TextInput,
+  },
+  data() {
+    const cookies = inject<VueCookies>("$cookies");
+    return cookies;
   },
   methods: {
     login: async function () {
@@ -17,7 +20,7 @@ export default {
       const lUsername = document.getElementById(
         "l-username"
       ) as HTMLInputElement | null;
-      let res = await fetch(import.meta.env.VITE_API_URL + "Users/login", {
+      let res = await fetch(import.meta.env.VITE_API_URL + "User/login", {
         method: "POST",
         headers: {
           Accept: "*/*",
@@ -30,7 +33,7 @@ export default {
       });
       res.text().then((txt) => {
         if (res.status == 200) {
-          $cookies?.set("jwt", txt);
+          this.$cookies?.set("jwt", txt);
         }
         router.push("home");
       });

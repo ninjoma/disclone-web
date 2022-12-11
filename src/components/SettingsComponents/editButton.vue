@@ -18,7 +18,11 @@ export default {
   components: { TextInput, editPopup },
   methods: {
     openPopup: function () {
-      document.getElementById("editpopup-" + this.id)?.classList.add("active");
+      this.type === "text"
+        ? document
+            .getElementById("editpopup-" + this.id)
+            ?.classList.add("active")
+        : (location.href = "https://www.youtube.com/watch?v=L_jWHffIx5E");
     },
   },
 };
@@ -29,7 +33,9 @@ export default {
   <div class="editbutton-container">
     <div class="editbutton-data">
       <h4>{{ property?.toUpperCase() }}</h4>
-      <h3>{{ type === "text" ? value : "**********" }}</h3>
+      <h3 :id="property?.toLocaleLowerCase() + `-text`">
+        {{ type === "text" ? value : "**********" }}
+      </h3>
     </div>
     <button v-on:click="openPopup()">Editar</button>
   </div>
