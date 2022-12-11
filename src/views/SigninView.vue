@@ -55,7 +55,7 @@ async function createAccount() {
   const rEmail = document.getElementById("r-email") as HTMLInputElement | null;
   const rPassword = document.getElementById("r-password") as HTMLInputElement | null;
   const rUsername = document.getElementById("r-username") as HTMLInputElement | null;
-  let res = await fetch(import.meta.env.VITE_API_URL + "Users/AddEditAsync", {
+  let res = await fetch(import.meta.env.VITE_API_URL + "User/AddEditAsync", {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -75,7 +75,7 @@ async function createAccount() {
 async function login() {
   const lPassword = document.getElementById("l-password") as HTMLInputElement | null;
   const lUsername = document.getElementById("l-username") as HTMLInputElement | null;
-  let res = await fetch(import.meta.env.VITE_API_URL + "Users/login", {
+  let res = await fetch(import.meta.env.VITE_API_URL + "User/login", {
     method: "POST",
     headers: {
       Accept: "*/*",

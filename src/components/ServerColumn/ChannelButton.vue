@@ -1,11 +1,17 @@
 <script lang="ts">
 export default {
-  props: ['type', 'name', 'id']
+  props: ['type', 'name', 'id'],
+  methods: {
+    redirect: function(){
+        var megquery = this.$route.query
+        this.$router.push({ name: "server", query: {id: this.$route.query.id, channel: this.id} });
+    }
+  }
 }
 </script>
 
 <template>
-    <button class="channel">
+    <button class="channel" v-on:click="redirect">
         <i v-if="type === 'text'" class="bi bi-quote icon-big"></i> 
         <i v-if="type === 'voice'" class="bi bi-volume-down-fill icon-big"></i>
         <span class="name">{{ name }}</span>

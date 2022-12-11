@@ -1,10 +1,16 @@
+<script type="ts">
+    export default {
+        props: ['username']
+    }
+</script>
+
 <template>
     <div class="user-controls">
-        <span id="username">Username</span>
+        <span id="username">{{ username }}</span>
         <div class="controls">
-            <i class="bi bi-mic-fill icon-big"></i>
-            <i class="bi bi-headphones icon-big" style="font-size: 24px;"></i>
-            <a href="/settings"><i class="bi bi-gear-fill icon-big"></i></a>
+            <i class="bi bi-mic-fill"></i>
+            <i class="bi bi-headphones" style="font-size: 24px;"></i>
+            <a href="/settings"><i class="bi bi-gear-fill"></i></a>
         </div>
     </div>
 </template>
@@ -25,7 +31,7 @@
 .controls {
     display:flex;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
 }
 
 a {

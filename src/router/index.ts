@@ -38,7 +38,7 @@ const router = createRouter({
 })
 
 async function verify(jwtcookie: string) {
-  let res = await fetch(import.meta.env.VITE_API_URL + "Users/verify", {
+  let res = await fetch(import.meta.env.VITE_API_URL + "User/verify", {
     method: "GET",
     headers: new Headers({
       'Accept': "*/*",
