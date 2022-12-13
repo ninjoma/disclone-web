@@ -7,55 +7,51 @@ import type { VueCookies } from "vue-cookies";
 import { inject } from "vue";
 
 export default {
-  data() {
-    const cookies = inject<VueCookies>("$cookies");
-    var channelname = "";
-    return {
-      cookies,
-      channelname,
-    };
-  },
-  created() {
-    this.$watch(
-      () => this.$route.params,
-      () => {
-        this.fetchInfo();
-      }
-    );
-  },
-  mounted() {
-    this.fetchInfo();
-  },
-  methods: {
-    fetchInfo: async function () {
-      if (!this.$route.query.channel) {
-        return;
-      }
-      let res = await fetch(
-        import.meta.env.VITE_API_URL +
-          "Channel/GetByIdAsync/" +
-          this.$route.query.channel,
-        {
-          method: "GET",
-          headers: new Headers({
-            Accept: "*/*",
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + this.cookies?.get("jwt"),
-          }),
-        }
-      );
-      res.json().then((r) => {
-        this.channelname = r.name;
-      });
+    data() {
+        const cookies = inject<VueCookies>("$cookies");
+        var channelname = "";
+        return {
+        cookies,
+        channelname,
+        };
     },
-  },
-  components: {
-    UsersColumn,
-    ServerColumn,
-    MessageColumn,
-    SearchInput,
-  },
-};
+    created() {
+        this.$watch(
+        () => this.$route.params,
+        () => {
+            this.fetchInfo();
+        }
+        );
+    },
+    mounted() {
+        this.fetchInfo();
+    },
+    methods: {
+        fetchInfo: async function(){
+            if(!this.$route.query.channel){
+                return
+            }
+            let res = await fetch(import.meta.env.VITE_API_URL + "Channel/GetByIdAsync/" + this.$route.query.channel, {
+                method: "GET",
+                headers: new Headers({
+                    'Accept': "*/*",
+                    "Content-Type": "application/json",
+                    'Authorization': "Bearer " + this.cookies?.get("jwt")
+                }),
+            });
+            res.json().then((r) => {
+                this.channelname = r.name
+            })
+        }   
+    },
+    components: {
+        UsersColumn,
+        ServerColumn,
+        MessageColumn,
+        SearchInput
+    }
+}
+
 </script>
 
 <template>

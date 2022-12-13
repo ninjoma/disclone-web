@@ -22,70 +22,52 @@ export default {
       }
     );
   },
-  mounted() {
-    this.fetchInfo();
-  },
-  methods: {
-    sendMessage: async function () {
-      var channelid = this.$route.query.channel;
-      if (channelid == null && this.messageInput.length > 0) {
-        return;
-      }
-      let res = await fetch(
-        import.meta.env.VITE_API_URL + "Message/sendMessage",
-        {
-          method: "POST",
-          headers: new Headers({
-            Accept: "*/*",
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + this.cookies?.get("jwt"),
-          }),
-          body: JSON.stringify({
-            channelId: channelid,
-            content: this.messageInput,
-          }),
-        }
-      );
-      this.messageInput = "";
-      window.location.reload();
+    mounted() {
+        this.fetchInfo();
     },
-    fetchInfo: async function () {
-      this.messages = [];
-      var channelid: any = this.$route.query.channel;
-      let res = await fetch(
-        import.meta.env.VITE_API_URL +
-          "Message/getMessagesFromChannel/" +
-          channelid,
-        {
-          method: "GET",
-          headers: new Headers({
-            Accept: "*/*",
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + this.cookies?.get("jwt"),
-          }),
+    methods: {
+    sendMessage: async function(){
+        var channelid = this.$route.query.channel;
+        if(channelid == null && this.messageInput.length > 0){
+            return;
         }
-      );
-      res.json().then((result: Array<any>) => {
-        if (this.$route.query.messageQuery) {
-          result = result.filter(
-            (entry) =>
-              entry.content.includes(this.$route.query.messageQuery) ||
-              entry.user.userName.includes(this.$route.query.messageQuery)
-          );
-        }
-        result.forEach((entry) => {
-          var messageDate = new Date(entry.creationDate);
-          var messageDateString =
-            messageDate.getHours() + ":" + messageDate.getMinutes();
-          this.messages.push({
-            date: messageDateString,
-            user: entry.user.userName,
-            text: entry.content,
-            id: entry.id,
-          });
-        });
-      });
+        let res = await fetch(import.meta.env.VITE_API_URL + "Message/sendMessage", {
+            method: "POST",
+            headers: new Headers({
+                'Accept': "*/*",
+                "Content-Type": "application/json",
+                'Authorization': "Bearer " + this.cookies?.get("jwt")
+            }),
+            body: JSON.stringify({
+                channelId: channelid,
+                content: this.messageInput
+            })
+        })
+        this.messageInput = "";
+        this.fetchInfo();
     },
+    fetchInfo: async function(){
+        var channelid: any = this.$route.query.channel;
+        let res = await fetch(import.meta.env.VITE_API_URL + "Message/getMessagesFromChannel/" + channelid, {
+            method: "GET",
+            headers: new Headers({
+                'Accept': "*/*",
+                "Content-Type": "application/json",
+                'Authorization': "Bearer " + this.cookies?.get("jwt")
+            })
+        })
+        res.json().then((result: Array<any>) => {
+            if(this.$route.query.messageQuery){
+                result = result.filter((entry) => entry.content.toLowerCase().includes(this.$route.query.messageQuery) || entry.user.userName.toLowerCase().includes(this.$route.query.messageQuery));
+            }
+            this.messages = [];
+            result.forEach(entry => {
+                var messageDate = new Date(entry.creationDate)
+                var messageDateString = messageDate.getHours() + ":" + messageDate.getMinutes();
+                this.messages.push({date: messageDateString, user: entry.user.userName, text: entry.content})
+            });
+        })
+    }
   },
   components: {
     Message,

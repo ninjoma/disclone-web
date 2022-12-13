@@ -4,6 +4,7 @@ import router from "@/router";
 import type { VueCookies } from "vue-cookies";
 import { inject } from 'vue';
 import * as Vue from 'vue';
+import AddServerIcon from "./AddServerIcon.vue";
 
 export default {
     setup(){
@@ -34,7 +35,8 @@ export default {
         })
     },
     components: {
-        ServerIcon
+        ServerIcon,
+        AddServerIcon
     }
 }
 
@@ -43,6 +45,7 @@ export default {
 <template>
     <div ref="serverlist" class="server-list">
         <ServerIcon v-for="server in servers" :name=server.servername :id=server.id />
+        <AddServerIcon/>
     </div>
 </template>
 <style scoped>

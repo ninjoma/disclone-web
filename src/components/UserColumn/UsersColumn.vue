@@ -27,7 +27,6 @@ export default {
     },
     methods: {
         fetchInfo: async function(){
-            this.members = [];
             var serverid: any = this.$route.query.id;
             if(serverid == null){
                 return;
@@ -41,6 +40,7 @@ export default {
                 })
             })
             res.json().then((result: Array<any>) => {
+                this.members = [];
                 result.forEach(entry => {
                     this.members.push({id: entry.id, username: entry.user.userName})
                 });

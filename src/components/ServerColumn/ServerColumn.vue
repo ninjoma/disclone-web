@@ -6,77 +6,65 @@ import type { VueCookies } from "vue-cookies";
 import { inject } from "vue";
 
 export default {
-  data() {
-    let channels: any = [];
-    let servername = "";
-    const user: any = {};
-    const cookies = inject<VueCookies>("$cookies");
-    return {
-      cookies,
-      channels,
-      user,
-      servername,
-    };
-  },
-  components: {
-    ChannelButton,
-    UserControls,
-    ServerList,
-  },
-  created() {
-    this.$watch(
-      () => this.$route.params,
-      () => {
-        this.fetchInfo();
-      }
-    );
-  },
-  mounted() {
-    this.fetchInfo();
-  },
-  methods: {
-    fetchInfo: async function () {
-      this.channels = [];
-      var serverid: any = this.$route.query.id;
-      if (serverid == null) {
-        return;
-      }
-      let channelres = await fetch(
-        import.meta.env.VITE_API_URL + "Channel/ListByServer/" + serverid,
-        {
-          method: "GET",
-          headers: new Headers({
-            Accept: "*/*",
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + this.cookies?.get("jwt"),
-          }),
+    data() {
+        let channels: any = [];
+        let servername = "";
+        const user: any = {};
+        const cookies = inject<VueCookies>('$cookies');
+        return {
+            cookies,
+            channels,
+            user,
+            servername
         }
-      );
-      let userres = await fetch(
-        import.meta.env.VITE_API_URL + "User/getUserInfo/",
-        {
-          method: "GET",
-          headers: new Headers({
-            Accept: "*/*",
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + this.cookies?.get("jwt"),
-          }),
-        }
-      );
-      channelres.json().then((result: Array<any>) => {
-        this.servername = result[0].server.name;
-        result.forEach((entry) => {
-          this.channels.push({
-            id: entry.id,
-            name: entry.name,
-            type: entry.type == 0 ? "text" : "voice",
-          });
-        });
-      });
-      userres.json().then((result: any) => {
-        this.user.userName = result.userName;
-      });
     },
+    components: {
+        ChannelButton,
+        UserControls,
+        ServerList
+    },
+    created(){
+        this.$watch(() => this.$route.params,
+        () => {
+            this.fetchInfo();
+        })
+    },
+    mounted(){
+        this.fetchInfo();
+    },
+    methods: {
+        fetchInfo: async function(){
+            var serverid: any = this.$route.query.id;
+            if(serverid == null){
+                return;
+            }
+            let channelres = await fetch(import.meta.env.VITE_API_URL + "Channel/ListByServer/" + serverid, {
+                method: "GET",
+                headers: new Headers({
+                    'Accept': "*/*",
+                    "Content-Type": "application/json",
+                    'Authorization': "Bearer " + this.cookies?.get("jwt")
+                })
+            })
+            let userres = await fetch(import.meta.env.VITE_API_URL + "User/getUserInfo/", {
+                method: "GET",
+                headers: new Headers({
+                    'Accept': "*/*",
+                    "Content-Type": "application/json",
+                    'Authorization': "Bearer " + this.cookies?.get("jwt")
+                }),
+            })
+            channelres.json().then((result: Array<any>) => {
+                this.channels = [];
+                this.servername = result[0].server.name
+                result.forEach(entry => {
+                    this.channels.push({id: entry.id, name: entry.name, type: entry.type == 0 ? "text" : "voice"})
+                });
+            })
+            userres.json().then((result: any)=> {
+                this.user.userName = result.userName;
+            });
+        },
         addChannel: async function() {
             var name = await window.prompt("Name of the server:");
             var serverId = this.$route.query.id;
@@ -94,10 +82,11 @@ export default {
                     type: 0,
                     isActive: true,
                 })
-            })
-            window.location.reload;
-        }  },
-};
+            });
+            (this.$router as any).push({ name: "server", query: {id: serverId} });
+        }
+    },
+}
 </script>
 
 <template>
