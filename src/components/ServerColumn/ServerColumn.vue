@@ -66,7 +66,25 @@ export default {
                 this.user.userName = result.userName;
             });
         },
-
+        addChannel: async function() {
+            var name = await window.prompt("Name of the server:");
+            var serverId = this.$route.query.id;
+            await fetch(import.meta.env.VITE_API_URL + "Channel/AddEditAsync", {
+                method: "POST",
+                headers: new Headers({
+                    'Accept': "*/*",
+                    "Content-Type": "application/json",
+                    'Authorization': "Bearer " + this.cookies?.get("jwt")
+                }),
+                body: JSON.stringify({
+                    id: 0,
+                    serverId: serverId,
+                    name: name,
+                    type: 0,
+                    isActive: true,
+                })
+            })
+        }
     },
 }
 </script>
@@ -81,6 +99,10 @@ export default {
             </div>
             <div class="server-channels">
                 <ChannelButton v-for="channel in channels" :name=channel.name :id=channel.id :type=channel.type />
+                <button class="addChannel" v-on:click="addChannel()">
+                    <i class="bi bi-plus"></i>
+                    Añadir canal
+                </button>
             </div>
             <UserControls v-if="user" :username="user.userName"/>
         </div>
@@ -88,6 +110,20 @@ export default {
 </template>
 
 <style scoped>
+.addChannel{
+    border: transparent;
+    background-color: rgba(0, 0, 0, 0.089);
+    width: 100%;
+    border-radius: 9999px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: white;
+}
+.addChannel:hover{
+    background-color: rgba(0, 0, 0, 0.397);
+}
+
+
 .server-col {
     display:flex;
     background-color:#4f4d8c;
