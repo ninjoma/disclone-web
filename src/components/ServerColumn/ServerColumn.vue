@@ -84,9 +84,14 @@ export default {
                 })
             });
             (this.$router as any).push({ name: "server", query: {id: serverId} });
-        }
-    },
-}
+        },
+        copyToClipboard: function () {
+            let serverLink: any = this.$route.query.id;
+            navigator.clipboard.writeText(serverLink).then(() => {
+                alert("Link del servidor copiada correctamente");
+            });
+        },
+};
 </script>
 
 <template>
@@ -95,7 +100,11 @@ export default {
         <div class="server-contents-col">
             <div class="server-header">
                 <span id="servername">{{ servername }}</span>
-                <i class="bi bi-chevron-down"></i>
+                <i
+                    class="bi bi-chevron-down"
+                    title="Haz click para copiar el enlace del servidor"
+                    v-on:click="copyToClipboard()"
+                ></i>
             </div>
             <div class="server-channels">
                 <ChannelButton v-for="channel in channels" :name=channel.name :id=channel.id :type=channel.type />
@@ -122,7 +131,9 @@ export default {
 .addChannel:hover{
     background-color: rgba(0, 0, 0, 0.397);
 }
-
+.bi-chevron-down {
+  cursor: pointer;
+}
 
 .server-col {
   display: flex;
