@@ -84,6 +84,7 @@ export default {
                     isActive: true,
                 })
             })
+            window.location.reload;
         }
     },
 }
