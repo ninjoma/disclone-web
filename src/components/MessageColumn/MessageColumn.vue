@@ -42,10 +42,9 @@ export default {
                 })
             })
             this.messageInput = "";
-            window.location.reload();
+            this.fetchInfo();
         },
         fetchInfo: async function(){
-            this.messages = [];
             var channelid: any = this.$route.query.channel;
             let res = await fetch(import.meta.env.VITE_API_URL + "Message/getMessagesFromChannel/" + channelid, {
                 method: "GET",
@@ -59,6 +58,7 @@ export default {
                 if(this.$route.query.messageQuery){
                     result = result.filter((entry) => entry.content.includes(this.$route.query.messageQuery) || entry.user.userName.includes(this.$route.query.messageQuery));
                 }
+                this.messages = [];
                 result.forEach(entry => {
                     var messageDate = new Date(entry.creationDate)
                     var messageDateString = messageDate.getHours() + ":" + messageDate.getMinutes();

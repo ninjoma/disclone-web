@@ -38,7 +38,6 @@ export default {
                 }),
             });
             res.json().then((r) => {
-                console.log(r);
                 this.channelname = r.name
             })
         }   

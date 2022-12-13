@@ -6,7 +6,7 @@ export default {
       type: String,
       validator(val: string) {
         // The value must match one of these strings
-        return ["text", "password"].includes(val);
+        return ["text", "password", "number"].includes(val);
       },
     },
     id: String,

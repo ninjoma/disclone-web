@@ -11,11 +11,13 @@ export default {
         let servername = "";
         const user: any = {};
         const cookies = inject<VueCookies>('$cookies');
+        var serverid;
         return {
             cookies,
             channels,
             user,
-            servername
+            servername,
+            serverid
         }
     },
     components: {
@@ -34,7 +36,6 @@ export default {
     },
     methods: {
         fetchInfo: async function(){
-            this.channels = [];
             var serverid: any = this.$route.query.id;
             if(serverid == null){
                 return;
@@ -56,13 +57,13 @@ export default {
                 })
             })
             channelres.json().then((result: Array<any>) => {
+                this.channels = [];
                 this.servername = result[0].server.name
                 result.forEach(entry => {
                     this.channels.push({id: entry.id, name: entry.name, type: entry.type == 0 ? "text" : "voice"})
                 });
             })
             userres.json().then((result: any)=> {
-                console.log(userres)
                 this.user.userName = result.userName;
             });
         },
