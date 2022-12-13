@@ -19,8 +19,12 @@ export default {
             Authorization: "Bearer " + this.$cookies?.get("jwt"),
           }),
         }
-      );
-      window.location.reload();
+      ).then(() => {
+        this.$router.push({ name: "server", query: { id: this.$route.query.id, channel: this.$route.query.channel, removedMessage: "true" } }).then(() => {
+          this.$router.push({ name: "server", query: { id: this.$route.query.id, channel: this.$route.query.channel } });
+        });
+      });
+      
     },
   },
 };

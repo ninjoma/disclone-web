@@ -46,6 +46,10 @@ export default {
                     "Content-Type": "application/json",
                     'Authorization': "Bearer " + this.cookies?.get("jwt")
                 }),
+            }).then((a) => {
+                this.$router.push({ name: "server" }).then(() => {
+                    window.location.reload();
+                })
             })
         }
     },  

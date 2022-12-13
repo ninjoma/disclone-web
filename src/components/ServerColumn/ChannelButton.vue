@@ -22,6 +22,10 @@ export default {
                     "Content-Type": "application/json",
                     Authorization: "Bearer " + this.cookies?.get("jwt"),
                 }),
+            }).then(() => {
+                this.$router.push({ name: "server", query: { id: this.$route.query.id, refreshChannel: "a" } }).then(() => {
+                    this.$router.push({ name: "server", query: { id: this.$route.query.id } })
+                });
             })
         }
     }

@@ -83,7 +83,9 @@ export default {
                     isActive: true,
                 })
             });
-            (this.$router as any).push({ name: "server", query: {id: serverId} });
+            (this.$router as any).push({ name: "server", query: {id: serverId, channelcreated: "true"} }).then(() => {
+                (this.$router as any).push({ name: "server", query: {id: serverId} })
+            });
         },
         copyToClipboard: function () {
             let serverLink: any = this.$route.query.id;

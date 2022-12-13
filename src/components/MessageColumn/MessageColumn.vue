@@ -64,7 +64,7 @@ export default {
             result.forEach(entry => {
                 var messageDate = new Date(entry.creationDate)
                 var messageDateString = messageDate.getHours() + ":" + messageDate.getMinutes();
-                this.messages.push({date: messageDateString, user: entry.user.userName, text: entry.content})
+                this.messages.push({date: messageDateString, user: entry.user.userName, text: entry.content, id: entry.id})
             });
         })
     }
