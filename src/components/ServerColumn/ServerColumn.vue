@@ -91,7 +91,8 @@ export default {
                 alert("Link del servidor copiada correctamente");
             });
         },
-};
+    }
+}
 </script>
 
 <template>
