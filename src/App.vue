@@ -1,23 +1,14 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { RouterView } from "vue-router";
+
+export default defineComponent({
+  components: {
+
+  }
+})
 </script>
 
 <template>
-  <div class="">
-    <kbd className="kbd">Ctrl</kbd> + <kbd className="kbd">S</kbd>
-  </div>
+  <RouterView/>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
