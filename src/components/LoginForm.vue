@@ -10,7 +10,6 @@ export default defineComponent({
 </script>
 <template>
     <div class="w-full p-6 bg-white rounded-lg shadow-lg">
-        {{ $store.state }}
         <div>
             <img src="./../assets/disclone.png">
         </div>
