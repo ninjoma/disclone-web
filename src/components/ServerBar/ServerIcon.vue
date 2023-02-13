@@ -32,7 +32,7 @@ export default defineComponent({
             {{ name.substring(0,2) }}
         </span>
     </div>
-    <div ref="serverAnnotation" class="absolute bg-black left-20 z-50 rounded shadow-md px-2 py-0.5 on-show hidden text-ellipsis">
+    <div ref="serverAnnotation" class="absolute bg-inherit left-20 z-50 rounded shadow-md px-2 py-0.5 on-show hidden text-ellipsis">
         {{ name }}
     </div>
 </template>

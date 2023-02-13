@@ -55,8 +55,8 @@ export default defineComponent({
                     <div className="chat-bubble">WOW! 🤣</div>
                 </div>
             </div>
-            <div className="flex h-16 bg-neutral-focus items-center justify-between px-3 w-full">
-                <input type="text" placeholder="Type here" className="input w-full" />
+            <div className="flex h-16 items-center justify-between px-3 w-full bg-base-100 px-4">
+                <input type="text" placeholder="Type here" className="input w-full bg-base-300"/>
             </div>
         </div>
 
