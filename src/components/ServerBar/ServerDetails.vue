@@ -34,10 +34,12 @@ export default defineComponent({
         </div>
         <div className="flex h-16 bg-neutral-focus items-center justify-between px-5">
             <span>Username</span>
-            <div className="flex gap-4 text-xl">
+            <div className="flex gap-4 text-xl items-center">
                 <font-awesome-icon icon="fa-solid fa-microphone" />
                 <font-awesome-icon icon="fa-solid fa-headphones-simple" />
-                <font-awesome-icon icon="fa-solid fa-gears" />
+                <div>
+                    <router-link to="/settings"><font-awesome-icon icon="fa-solid fa-gears" /></router-link>
+                </div>
             </div>
         </div>
     </div>
