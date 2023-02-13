@@ -6,3 +6,13 @@
 .scrollbar-hide::-webkit-scrollbar {
     display: none !important;
 }
+
+.drawer-toggle ~ .drawer-content {
+    z-index: 0;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    overflow-y: auto;
+    transition-property: none !important;
+    transition-duration: 0ms !important;
+    /* transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); */
+}
