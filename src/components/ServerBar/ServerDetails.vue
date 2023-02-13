@@ -21,7 +21,7 @@ export default defineComponent({
         <div class="grow">
             <div className="flex flex-col p-3 gap-2">
                 <span>Voice Channels</span>
-                <button className="btn text-sm">Voice Channel #1</button>
+                <button className="btn text-sm ">Voice Channel #1</button>
                 <button className="btn btn-block">Voice Channel #2</button>
                 <button className="btn btn-block">Voice Channel #3</button>
             </div>
@@ -32,7 +32,7 @@ export default defineComponent({
                 <button className="btn btn-block">Text Channel #3</button>
             </div>
         </div>
-        <div className="flex h-16 bg-neutral-focus items-center justify-between px-5">
+        <div className="flex h-16 bg-base-300 items-center justify-between px-5">
             <span>Username</span>
             <div className="flex gap-4 text-xl">
                 <font-awesome-icon icon="fa-solid fa-microphone" />
