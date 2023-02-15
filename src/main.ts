@@ -5,7 +5,7 @@ import Router from './router/index';
 import UserStore from './stores/UserStore';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faBars, faCircleXmark, faGears, faHeadphonesSimple, faLanguage, faMicrophone, 
+import { faBars, faCircleXmark, faGears, faHeadphonesSimple, faLanguage, faMagnifyingGlass, faMicrophone, 
     faPalette, 
     faServer, faUser, faUsers, faVideo } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
@@ -19,7 +19,7 @@ app.use(Router);
 
 // Icons
 library.add(faBars, faComment, faGears, faUsers, faUser, faServer, 
-    faHeadphonesSimple, faMicrophone, faCircleXmark, faVideo, faPalette, faLanguage);
+    faHeadphonesSimple, faMicrophone, faCircleXmark, faVideo, faPalette, faLanguage, faMagnifyingGlass);
 
 
 // Root Element
