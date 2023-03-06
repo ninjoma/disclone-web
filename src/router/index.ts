@@ -6,7 +6,8 @@ import SettingsView from "../views/SettingsView.vue";
 const routes: VueRouter.RouteRecordRaw[] = [
     { path: '/login', component: LoginView },
     { path: '/server', component: ServerView },
-    { path: '/settings', component: SettingsView }
+    { path: '/settings', component: SettingsView },
+    { path: '/', component: LoginView }
 ]
 
 const routerOptions: VueRouter.RouterOptions = {
