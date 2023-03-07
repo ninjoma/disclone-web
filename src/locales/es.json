@@ -1,0 +1,10 @@
+{
+  "USERNAME": "Nombre de usuario",
+  "PASSWORD": "Contraseña",
+  "LOGIN": {
+    "USERNAMERECOVER": "Recuperar nombre de usuario",
+    "RECOVERPASSWORD": "¿Olvidaste tu contraseña?",
+    "LOGIN": "Iniciar Sesión",
+    "SIGNUP": "Registrarse"
+  }
+}

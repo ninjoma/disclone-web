@@ -14,20 +14,20 @@ export default defineComponent({
             <img src="./../assets/disclone.png">
         </div>
         <TextInput class="w-full" 
-            leftLabel="Nombre de usuario"
-            rightLabel="Recuperar Usuario"
+            :leftLabel="$t('USERNAME')"
+            :rightLabel="$t('LOGIN.USERNAMERECOVER')"
             />
         <TextInput class="w-full" 
             inputType="password"
-            leftLabel="Contraseña" 
-            rightLabel="¿Has olvidado tu contraseña?"
+            :leftLabel="$t('PASSWORD')" 
+            :rightLabel="$t('LOGIN.RECOVERPASSWORD')"
             />
         <div class="flex mt-5 w-full gap-3">
             <div class="w-full">
-                <button className="btn w-full no-animation">Iniciar Sesión</button>
+                <button className="btn w-full no-animation">{{$t('LOGIN.LOGIN')}}</button>
             </div>
             <div class="w-full">
-                <button className="btn w-full no-animation">Registrar</button>
+                <button className="btn w-full no-animation">{{$t('LOGIN.SIGNUP')}}</button>
             </div>
         </div>
     </div>

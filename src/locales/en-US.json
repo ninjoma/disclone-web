@@ -1,0 +1,10 @@
+{
+  "USERNAME": "Username",
+  "PASSWORD": "Password",
+  "LOGIN": {
+    "USERNAMERECOVER": "Recover username",
+    "RECOVERPASSWORD": "¿Did you forget your password?",
+    "LOGIN": "Log in",
+    "SIGNUP": "Sign Up"
+  }
+}
