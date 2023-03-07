@@ -6,5 +6,9 @@
     "RECOVERPASSWORD": "¿Olvidaste tu contraseña?",
     "LOGIN": "Iniciar Sesión",
     "SIGNUP": "Registrarse"
+  },
+  "LANGUAGE": {
+    "SPANISH": "Español",
+    "ENGLISH": "Ingles"
   }
 }

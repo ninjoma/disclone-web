@@ -4,7 +4,7 @@ import LoginForm from '../components/LoginForm.vue';
 
 export default defineComponent({
     components: {
-        LoginForm
+        LoginForm,
     }
 })
 </script>

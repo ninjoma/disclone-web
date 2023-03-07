@@ -1,10 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import TextInput from './TextInput.vue';
+import LanguageSelector from './LanguageSelector.vue';
 
 export default defineComponent({
     components: {
-        TextInput
+        TextInput,
+        LanguageSelector
     }
 })
 </script>
@@ -13,13 +15,13 @@ export default defineComponent({
         <div>
             <img src="./../assets/disclone.png">
         </div>
-        <TextInput class="w-full" 
+        <TextInput class="w-full"
             :leftLabel="$t('USERNAME')"
             :rightLabel="$t('LOGIN.USERNAMERECOVER')"
             />
-        <TextInput class="w-full" 
+        <TextInput class="w-full"
             inputType="password"
-            :leftLabel="$t('PASSWORD')" 
+            :leftLabel="$t('PASSWORD')"
             :rightLabel="$t('LOGIN.RECOVERPASSWORD')"
             />
         <div class="flex mt-5 w-full gap-3">
@@ -30,5 +32,6 @@ export default defineComponent({
                 <button className="btn w-full no-animation">{{$t('LOGIN.SIGNUP')}}</button>
             </div>
         </div>
+        <LanguageSelector cssClass="select-sm mt-5 w-full"/>
     </div>
 </template>

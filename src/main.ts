@@ -29,6 +29,9 @@ app.use(i18n);
 // Router
 app.use(Router);
 
+//API ENDPOINT
+app.config.globalProperties.$myGlobalVariable = 'localhost:5001';
+
 // Icons
 library.add(faBars, faComment, faGears, faUsers, faServer, faHeadphonesSimple, faMicrophone)
 
