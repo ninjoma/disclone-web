@@ -1,4 +1,5 @@
 import {createStore} from 'vuex'
+import appConfig from '../../appConfig.json'
 import Vue from 'vue'
 
 export default createStore({
