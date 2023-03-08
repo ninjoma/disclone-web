@@ -9,19 +9,27 @@ export default defineComponent({
             inputStyle: String
         },
         leftLabel: String,
-        rightLabel: String, 
-        errorLabel: String
-    }
+        rightLabel: String,
+        errorLabel: String,
+        modelValue: null,
+    },
+    setup: () => {
+        const handleInputChange = (event: Event) =>
+            (event.target as HTMLInputElement).value
+
+        return { handleInputChange }
+    },
 })
 </script>
-<template> 
+<template>
     <div>
         <label v-if="leftLabel || rightLabel" className="label">
             <span v-if="leftLabel" className="label-text">{{ leftLabel }}</span>
             <span v-if="rightLabel" className="label-text-alt"><a class="underline" href="#">{{ rightLabel }}</a></span>
         </label>
         <div class="flex">
-            <input :type="inputType" className="input input-bordered flex-1" />
+            <input :type="inputType" className="input input-bordered flex-1" :value="modelValue"
+                @input="$emit('update:modelValue', handleInputChange($event))" />
         </div>
         <label v-if="errorLabel" className="label">
             <span v-if="errorLabel" className="label-text">{{ errorLabel }}</span>
