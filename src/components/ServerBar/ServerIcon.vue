@@ -20,6 +20,9 @@ export default defineComponent({
             } else {
                 this.$refs.serverAnnotation.style.display = "";
             }
+        },
+        OpenServer(){
+            this.$store.dispatch('Server/SelectServer', this.id);
         }
     }
 })
@@ -27,7 +30,9 @@ export default defineComponent({
 </script>
 <template>
     <div class="w-full w-16 h-16 min-h-[4.5rem] bg-base-200 flex items-center justify-center hover-radius-change" 
-    v-on:mouseenter="handleAnnotation(true);" v-on:mouseleave="handleAnnotation(false)">
+    v-on:mouseenter="handleAnnotation(true);" v-on:mouseleave="handleAnnotation(false)"
+    v-on:click="OpenServer()"
+    >
         <span ref='serverText' class="text-xl font-bold">
             {{ name.substring(0,2) }}
         </span>

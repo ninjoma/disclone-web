@@ -16,5 +16,6 @@
       "APPCONFIG": "Configuracion de la app",
       "BACKBUTTON": "Volver atras"
     }
-  }
+  },
+  "EMAIL": "Correo electronico"
 }

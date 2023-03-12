@@ -11,14 +11,37 @@ export default defineComponent({
     data() {
         return {
             username: '',
-            password: ''
+            password: '',
+            email: '',
+            isLogin: true,
         }
     },
     methods: {
-        login() {
-            if (this.username.trim() != '' && this.password.trim() != ''){
-                this.$store.dispatch('login', {username: this.username, password: this.password});
-                console.log("entro")
+        Login() {
+            this.$isLoading = true;
+            if (this.isLogin) {
+                if (this.username.trim() != '' && this.password.trim() != '') {
+                    this.$store.dispatch('User/login', { username: this.username, password: this.password }).then(() => {
+                        setTimeout(() => {
+                            if (this.$store.getters['User/GetUserToken'] != null) {
+                                this.$router.push('/server');
+                            }
+                        }, 500);
+                    })
+                }
+            } else {
+                this.isLogin = true;
+            }
+        },
+        Register() {
+            if (!this.isLogin) {
+                this.$store.dispatch('User/register', { username: this.username, password: this.password, email: this.email }).then(() => {
+                    if (this.$store.getters['User/GetUserToken'] != null) {
+                        this.$router.push('/server');
+                    }
+                })
+            } else {
+                this.isLogin = false;
             }
         }
     }
@@ -30,21 +53,24 @@ export default defineComponent({
             <img src="./../../assets/disclone.png">
         </div>
 
-        <TextInput class="w-full" :leftLabel="$t('USERNAME')" :rightLabel="$t('LOGIN.USERNAMERECOVER')"
+        <TextInput class="w-full" :leftLabel="$t('USERNAME')" :rightLabel="this.isLogin ? $t('LOGIN.USERNAMERECOVER') : ''"
             v-model:modelValue="this.username" />
 
-        <TextInput class="w-full" inputType="password" :leftLabel="$t('PASSWORD')" :rightLabel="$t('LOGIN.RECOVERPASSWORD')"
-            v-model:modelValue="this.password" />
+        <TextInput class="w-full" inputType="password" :leftLabel="$t('PASSWORD')"
+            :rightLabel="this.isLogin ? $t('LOGIN.RECOVERPASSWORD') : ''" v-model:modelValue="this.password" />
+
+        <TextInput class="w-full" :leftLabel="$t('EMAIL')" v-model:modelValue="this.email" v-if="!this.isLogin" />
 
         <div class="flex mt-5 w-full gap-3">
-
             <!-- Iniciar Sesion -->
             <div class="w-full">
-                <button className="btn w-full no-animation" @click="login()">{{ $t('LOGIN.LOGIN') }}</button>
+                <button class="btn w-full no-animation" v-bind:class="this.isLogin ? '' : 'btn-ghost'" @click="Login()">{{
+                    $t('LOGIN.LOGIN') }}</button>
             </div>
             <!-- Registrar -->
             <div class="w-full">
-                <button className="btn w-full no-animation">{{ $t('LOGIN.SIGNUP') }}</button>
+                <button class="btn w-full no-animation" v-bind:class="this.isLogin ? 'btn-ghost' : ''"
+                    @click="Register()">{{ $t('LOGIN.SIGNUP') }}</button>
             </div>
 
         </div>
