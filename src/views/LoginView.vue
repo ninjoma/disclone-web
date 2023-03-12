@@ -1,10 +1,10 @@
-<script lang="ts">
+<script>
 import { defineComponent } from 'vue';
-import LoginForm from '../components/LoginForm.vue';
+import LoginForm from '../components/Forms/LoginForm.vue';
 
 export default defineComponent({
     components: {
-        LoginForm
+        LoginForm,
     }
 })
 </script>

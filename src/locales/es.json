@@ -1,0 +1,21 @@
+{
+  "USERNAME": "Nombre de usuario",
+  "PASSWORD": "Contraseña",
+  "LOGIN": {
+    "USERNAMERECOVER": "Recuperar nombre de usuario",
+    "RECOVERPASSWORD": "¿Olvidaste tu contraseña?",
+    "LOGIN": "Iniciar Sesión",
+    "SIGNUP": "Registrarse"
+  },
+  "LANGUAGE": {
+    "SPANISH": "Español",
+    "ENGLISH": "Ingles"
+  },
+  "SETTINGS": {
+    "APPCONFIG": {
+      "APPCONFIG": "Configuracion de la app",
+      "BACKBUTTON": "Volver atras"
+    }
+  },
+  "EMAIL": "Correo electronico"
+}
