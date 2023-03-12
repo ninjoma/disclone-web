@@ -6,11 +6,14 @@ import LoadingComponent from "./components/UI/LoadingComponent.vue"
 export default defineComponent({
   components: {
     LoadingComponent
-  }
+  },
+  mounted() {
+    this.$store.dispatch('User/fetchUserData');
+  },
 })
 </script>
 
 <template>
-  <LoadingComponent/>
+  <LoadingComponent />
   <RouterView />
 </template>

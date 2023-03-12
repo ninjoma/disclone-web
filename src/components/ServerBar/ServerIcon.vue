@@ -13,31 +13,31 @@ export default defineComponent({
         }
     },
     methods: {
-        handleAnnotation(isActive: boolean){
-            if(isActive) {
+        handleAnnotation(isActive: boolean) {
+            if (isActive) {
                 this.$refs.serverAnnotation.style.display = "block";
                 this.$refs.serverAnnotation.style.top = this.$refs.serverText.getBoundingClientRect().top + 'px';
             } else {
                 this.$refs.serverAnnotation.style.display = "";
             }
         },
-        OpenServer(){
+        OpenServer() {
             this.$store.dispatch('Server/SelectServer', this.id);
+            this.$store.dispatch('Channel/FetchChannels', this.id);
         }
     }
 })
 
 </script>
 <template>
-    <div class="w-full w-16 h-16 min-h-[4.5rem] bg-base-200 flex items-center justify-center hover-radius-change" 
-    v-on:mouseenter="handleAnnotation(true);" v-on:mouseleave="handleAnnotation(false)"
-    v-on:click="OpenServer()"
-    >
+    <div class="w-full w-16 h-16 min-h-[4.5rem] bg-base-200 flex items-center justify-center hover-radius-change cursor-pointer"
+        v-on:mouseenter="handleAnnotation(true);" v-on:mouseleave="handleAnnotation(false)" v-on:click="OpenServer()">
         <span ref='serverText' class="text-xl font-bold">
-            {{ name.substring(0,2) }}
+            {{ name.substring(0, 2) }}
         </span>
     </div>
-    <div ref="serverAnnotation" class="absolute bg-inherit left-20 z-50 rounded shadow-md px-2 py-0.5 on-show hidden text-ellipsis">
+    <div ref="serverAnnotation"
+        class="absolute bg-inherit left-20 z-50 rounded shadow-md px-2 py-0.5 on-show hidden text-ellipsis">
         {{ name }}
     </div>
 </template>
@@ -56,9 +56,19 @@ export default defineComponent({
     animation-name: showAnnotation;
     animation-duration: 0.125s;
 }
+
 @keyframes showAnnotation {
-    0% { opacity: 0; transform: scale(.95) }
-    50% { transform: scale(1.05) }
-    100% { opacity: 1; transform: scale(1) }
-}
-</style>
+    0% {
+        opacity: 0;
+        transform: scale(.95)
+    }
+
+    50% {
+        transform: scale(1.05)
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1)
+    }
+}</style>

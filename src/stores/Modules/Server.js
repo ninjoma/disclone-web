@@ -7,42 +7,52 @@ export default {
         currentServer: {},
     },
     getters: {
-        GetServers(state){
+        GetServers(state) {
             return state.servers;
+        },
+        GetCurrentServer(state) {
+            return state.currentServer;
         }
     },
     mutations: {
-        updateServers(state, servers){
+        updateServers(state, servers) {
             state.servers = servers
         },
-        addToServerList(state, server){
+        addToServerList(state, server) {
             state.servers.push(server);
         },
-        updateSelectedServer(state, server){
-            state.SelectServer = server;
+        updateSelectedServer(state, server) {
+            state.currentServer = server;
+        },
+        clearServerList(state){
+            state.servers = [];
         }
     },
     actions: {
-        fetchServers(context){
+        fetchServers({ commit, getters }) {
+            commit('clearServerList');
             Api({
                 method: 'get',
                 url: '/members/me',
-            }).then(function(response) {
+            }).then(function (response) {
                 response.data.forEach(server => {
                     Api({
                         method: 'get',
                         url: '/servers/' + server.serverId
-                    }).then(function(response){
-                        context.commit('addToServerList', response.data);
+                    }).then(function (response) {
+                        if (getters.GetCurrentServer != null){
+                            commit('updateSelectedServer', response.data);
+                        }
+                        commit('addToServerList', response.data);
                     })
                 });
             })
         },
-        SelectServer(context, serverId){
+        SelectServer(context, serverId) {
             Api({
                 method: 'get',
                 url: '/servers/' + serverId
-            }).then(function(response){
+            }).then(function (response) {
                 context.commit('updateSelectedServer', response.data);
             })
         }

@@ -1,10 +1,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-
+import ChannelButton from './ChannelButton.vue'
 
 export default defineComponent({
     components: {
-        
+        ChannelButton
     }
 })
 </script>
@@ -15,25 +15,16 @@ export default defineComponent({
                 <div className="text-2xl pr-2">
                     <font-awesome-icon icon="fa-solid fa-server" />
                 </div>
-                <span className="font-bold uppercase italic">Server Name</span>
+                <span className="font-bold uppercase italic">{{ this.$store.getters['Server/GetCurrentServer'].name }}</span>
             </div>
         </div>
         <div class="grow">
             <div className="flex flex-col p-3 gap-2">
-                <span>Voice Channels</span>
-                <button className="btn text-sm ">Voice Channel #1</button>
-                <button className="btn btn-block">Voice Channel #2</button>
-                <button className="btn btn-block">Voice Channel #3</button>
-            </div>
-            <div className="flex flex-col p-3 gap-2">
-                <span>Text Channels</span>
-                <button className="btn text-sm">Text Channel #1</button>
-                <button className="btn btn-block">Text Channel #2</button>
-                <button className="btn btn-block">Text Channel #3</button>
+                <ChannelButton v-for="channel in this.$store.getters['Channel/GetChannels']" :name="channel.name" :channel-id="channel.id"/>
             </div>
         </div>
         <div className="flex h-16 bg-base-300 items-center justify-between px-5">
-            <span>Username</span>
+            <span>{{ this.$store.getters['User/GetUserData'].username }}</span>
             <div className="flex gap-4 text-xl items-center">
                 <font-awesome-icon icon="fa-solid fa-microphone" />
                 <font-awesome-icon icon="fa-solid fa-headphones-simple" />

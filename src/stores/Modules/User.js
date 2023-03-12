@@ -31,6 +31,9 @@ export default {
         },
         GetUserToken(state) {
             return state.userToken;
+        },
+        GetUserData(state){
+            return state.user;
         }
     },
     mutations: {
