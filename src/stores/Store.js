@@ -1,5 +1,6 @@
 import { createStore } from 'vuex'
 import appConfig from '../../appConfig.json'
+import axios from 'axios'
 
 export default createStore({
     state: {
@@ -63,19 +64,15 @@ export default createStore({
             context.commit
         },
         async login(context, { username, password }) {
-            fetch(appConfig.ApiRoute + '/auth/login', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
+            axios({
+                method: 'post',
+                url: '/auth/login',
+                data: {
                     user: {
                         username: username,
                         password: password,
                     }
-                }),
-            }).then(response => {
-                console.log(response)
+                }
             })
         }
     }

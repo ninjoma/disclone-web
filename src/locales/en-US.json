@@ -10,5 +10,11 @@
   "LANGUAGE": {
     "SPANISH": "Spanish",
     "ENGLISH": "English"
+  },
+  "SETTINGS": {
+    "APPCONFIG": {
+      "APPCONFIG": "App Settings",
+      "BACKBUTTON": "Return"
+    }
   }
 }

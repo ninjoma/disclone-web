@@ -1,7 +1,7 @@
 <script>
 import { defineComponent } from 'vue';
-import TextInput from './TextInput.vue';
-import LanguageSelector from './LanguageSelector.vue';
+import TextInput from '../Inputs/TextInput.vue';
+import LanguageSelector from '../Inputs/LanguageSelector.vue';
 
 export default defineComponent({
     components: {
@@ -15,10 +15,10 @@ export default defineComponent({
         }
     },
     methods: {
-
         login() {
             if (this.username.trim() != '' && this.password.trim() != ''){
                 this.$store.dispatch('login', {username: this.username, password: this.password});
+                console.log("entro")
             }
         }
     }
@@ -27,7 +27,7 @@ export default defineComponent({
 <template>
     <div class="w-full p-6 bg-white rounded-lg shadow-lg">
         <div>
-            <img src="./../assets/disclone.png">
+            <img src="./../../assets/disclone.png">
         </div>
 
         <TextInput class="w-full" :leftLabel="$t('USERNAME')" :rightLabel="$t('LOGIN.USERNAMERECOVER')"
