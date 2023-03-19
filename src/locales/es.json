@@ -17,5 +17,9 @@
       "BACKBUTTON": "Volver atras"
     }
   },
-  "EMAIL": "Correo electronico"
+  "EMAIL": "Correo electronico",
+  "SERVER": {
+    "NOSELECTEDSERVER": "Seleccione Servidor",
+    "NEWCHANNEL": "Nuevo Canal"
+  }
 }

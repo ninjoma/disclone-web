@@ -1,10 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ChannelButton from './ChannelButton.vue'
+import CreateChannelButton from '../Inputs/CreateChannelButton.vue';
 
 export default defineComponent({
     components: {
-        ChannelButton
+        ChannelButton,
+        CreateChannelButton
     }
 })
 </script>
@@ -15,12 +17,14 @@ export default defineComponent({
                 <div className="text-2xl pr-2">
                     <font-awesome-icon icon="fa-solid fa-server" />
                 </div>
-                <span className="font-bold uppercase italic">{{ this.$store.getters['Server/GetCurrentServer'].name }}</span>
+                <span className="font-bold uppercase italic" v-if="Object.keys(this.$store.getters['Server/GetCurrentServer']).length > 0">{{ this.$store.getters['Server/GetCurrentServer'].name }}</span>
+                <span className="font-bold uppercase italic" v-if="Object.keys(this.$store.getters['Server/GetCurrentServer']).length === 0">{{ $t('SERVER.NOSELECTEDSERVER') }}</span>
             </div>
         </div>
         <div class="grow">
             <div className="flex flex-col p-3 gap-2">
                 <ChannelButton v-for="channel in this.$store.getters['Channel/GetChannels']" :name="channel.name" :channel-id="channel.id"/>
+                <CreateChannelButton v-if="Object.keys(this.$store.getters['Server/GetCurrentServer']).length > 0" />
             </div>
         </div>
         <div className="flex h-16 bg-base-300 items-center justify-between px-5">

@@ -17,5 +17,9 @@
       "BACKBUTTON": "Return"
     }
   },
-  "EMAIL": "Email"
+  "EMAIL": "Email",
+  "SERVER": {
+    "NOSELECTEDSERVER": "No Server Selected",
+    "NEWCHANNEL": "New Channel"
+  }
 }

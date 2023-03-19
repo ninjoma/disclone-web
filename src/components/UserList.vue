@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import userProfile from './UI/UserProfile.vue'
 
 export default defineComponent({
     components: {
@@ -21,38 +22,7 @@ export default defineComponent({
             </div>
             <div className="flex flex-col p-3 gap-2 grow">
                 <div className="flex flex-col p-2 gap-3">
-                    <div class="flex items-center gap-3">
-                        <div className="h-10 w-10 bg-white rounded-full">
-
-                        </div>
-                        <div className="">
-                            Ninjam
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div className="h-10 w-10 bg-white rounded-full">
-
-                        </div>
-                        <div className="">
-                            Toskan4211
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div className="h-10 w-10 bg-white rounded-full">
-
-                        </div>
-                        <div className="">
-                            Tearing
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <div className="h-10 w-10 bg-white rounded-full">
-
-                        </div>
-                        <div className="">
-                            Test User
-                        </div>
-                    </div>
+                    <userProfile v-for="user in this.$store.getters['Server/GetMembers']" :user="user"></userProfile>
                 </div>
             </div>
         </div>
