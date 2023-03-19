@@ -15,6 +15,9 @@
     "APPCONFIG": {
       "APPCONFIG": "Configuracion de la app",
       "BACKBUTTON": "Volver atras"
+    },
+    "CHART": {
+      "USERSLANGUAGE": "Usuarios por idioma"
     }
   },
   "EMAIL": "Correo electronico",
