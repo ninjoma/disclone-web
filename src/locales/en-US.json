@@ -24,5 +24,8 @@
   "SERVER": {
     "NOSELECTEDSERVER": "No Server Selected",
     "NEWCHANNEL": "New Channel"
+  },
+  "HOME": {
+    "SALUTE": "Welcome to DISCLONE"
   }
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import userProfile from './UI/UserProfile.vue'
+import userProfile from './UserProfile.vue'
 
 export default defineComponent({
     components: {
@@ -12,8 +12,8 @@ export default defineComponent({
 <div className="drawer drawer-end drawer-mobile">
   <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content">
-    <slot />
-  </div> 
+    <slot></slot>
+  </div>
   <div className="drawer-side">
     <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
     <ul className="menu w-80 bg-base-100 text-base-content">

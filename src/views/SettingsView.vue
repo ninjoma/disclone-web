@@ -1,8 +1,6 @@
 <script>
 import { defineComponent } from 'vue';
 import ServerBar from '../components/ServerBar/ServerBar.vue';
-import Navbar from "../components/Navbar.vue";
-import UserList from '../components/UserList.vue';
 import LanguageSelector from '../components/Inputs/LanguageSelector.vue'
 import GoBackButton from '../components/Inputs/GoBackButton.vue'
 import { Bar } from 'vue-chartjs'

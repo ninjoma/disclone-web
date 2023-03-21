@@ -11,7 +11,7 @@
 <script lang="ts">
 export default {
     prop: {
-        user: null;
+        user: null,
     }
 }
 </script>

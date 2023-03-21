@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import ChatMessage from './UI/ChatMessage.vue';
+import ChatMessage from './ChatMessage.vue';
 
 export default defineComponent({
     components: {

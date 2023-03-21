@@ -24,5 +24,9 @@
   "SERVER": {
     "NOSELECTEDSERVER": "Seleccione Servidor",
     "NEWCHANNEL": "Nuevo Canal"
+  },
+  "HOME": {
+    "SALUTE": "¡Bienvenido a Disclone!",
+    "WELCOMEMSG": "A tu izquierda podras ver un menu donde crear y usar servidores, para empezar a explorar presiona alguno de ellos!"
   }
 }
