@@ -15,6 +15,7 @@ export default defineComponent({
   setup() {
     provide('$hub', useSignalR()); // Websocket RealTime Connection
   }
+})
 </script>
 
 <template>
