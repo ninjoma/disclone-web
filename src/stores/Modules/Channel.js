@@ -24,12 +24,9 @@ export default {
         updateCurrentChannel(state, channel){
             state.currentChannel = channel;
         },
-<<<<<<< HEAD
-=======
         updateMessages(state, messages) {
             state.currentChannel.messages = messages;
         }
->>>>>>> 58c0ec8456ba54ca89650e65223cef71b8b3dcbe
     },
     actions: {
         FetchChannels(context, serverId){
@@ -52,8 +49,15 @@ export default {
             Api({
                 method: 'get',
                 url: '/channels/' + channelId
-            }).then(function(response){
-                context.commit('updateCurrentChannel', response.data);
+            }).then(function(res1){
+                var res = res1.data;
+                Api({
+                    method: 'get',
+                    url: '/channels/' + channelId + '/messages/'
+                }).then(function(res2){
+                    res.messages = res2.data
+                    context.commit('updateCurrentChannel', res);
+                })
             })
         }
 
