@@ -33,5 +33,9 @@
     "WELCOMEMSG": "A tu izquierda podras ver un menu donde crear y usar servidores, para empezar a explorar presiona alguno de ellos!",
     "NITRO": "¿Que es DISCLONE Nitro?",
     "NITROMSG": "Disclone Nitro es un servicio de pago que proporciona una mejor experiencia de usuario"
+  },
+  "CHANNEL": {
+    "CHANNELNAME": "Nombre del canal",
+    "ADDCHANNEL": "Crear canal"
   }
 }

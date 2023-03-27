@@ -11,6 +11,10 @@ export default defineComponent({
         leftLabel: String,
         rightLabel: String,
         errorLabel: String,
+        showError: {
+            type: Boolean,
+            default: false,
+        },
         modelValue: null,
     },
     setup: () => {
@@ -28,11 +32,37 @@ export default defineComponent({
             <span v-if="rightLabel" className="label-text-alt"><a class="underline" href="#">{{ rightLabel }}</a></span>
         </label>
         <div class="flex">
-            <input :type="inputType" className="input input-bordered flex-1" :value="modelValue"
-                @input="$emit('update:modelValue', handleInputChange($event))" />
+            <input :type="inputType" :class="'input input-bordered flex-1 ' + (this.showError ? 'input-error shake' : '')"
+                :value="modelValue"
+                @input="$emit('update:modelValue', handleInputChange($event)); this.$emit('onChange');" />
         </div>
         <label v-if="errorLabel" className="label">
             <span v-if="errorLabel" className="label-text">{{ errorLabel }}</span>
         </label>
     </div>
 </template>
+<style>
+.shake{
+   animation: horizontal-shaking 0.25s; 
+}
+@keyframes horizontal-shaking {
+    0% {
+        transform: translateX(0)
+    }
+
+    25% {
+        transform: translateX(5px)
+    }
+
+    50% {
+        transform: translateX(-5px)
+    }
+
+    75% {
+        transform: translateX(5px)
+    }
+
+    100% {
+        transform: translateX(0)
+    }
+}</style>

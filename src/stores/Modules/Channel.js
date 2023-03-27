@@ -1,4 +1,4 @@
-import {Api} from '../../Gateway/Api'
+import { Api } from '../../Gateway/Api'
 
 export default {
     namespaced: true,
@@ -7,36 +7,33 @@ export default {
         currentChannel: {},
     },
     getters: {
-        GetChannels(state){
+        GetChannels(state) {
             return state.channels;
         },
-        GetChannelMsgs(state){
+        GetChannelMsgs(state) {
             return state.currentChannel.messages;
         },
-        GetCurrentChannel(state){
+        GetCurrentChannel(state) {
             return state.currentChannel;
         }
     },
     mutations: {
-        updateChannels(state, channels){
+        updateChannels(state, channels) {
             state.channels = channels;
         },
-        updateCurrentChannel(state, channel){
+        updateCurrentChannel(state, channel) {
             state.currentChannel = channel;
         },
-<<<<<<< HEAD
-=======
         updateMessages(state, messages) {
             state.currentChannel.messages = messages;
         }
->>>>>>> 58c0ec8456ba54ca89650e65223cef71b8b3dcbe
     },
     actions: {
-        FetchChannels(context, serverId){
+        FetchChannels(context, serverId) {
             Api({
                 method: 'get',
                 url: '/servers/' + serverId + '/channels'
-            }).then(function(response){
+            }).then(function (response) {
                 context.commit('updateChannels', response.data);
             })
         },
@@ -44,15 +41,15 @@ export default {
             Api({
                 method: 'get',
                 url: '/channels/' + channelId + '/messages/'
-            }).then(function(response){
+            }).then(function (response) {
                 context.commit('updateMessages', response.data);
             })
         },
-        SelectChannel(context, channelId){
+        SelectChannel(context, channelId) {
             Api({
                 method: 'get',
                 url: '/channels/' + channelId
-            }).then(function(response){
+            }).then(function (response) {
                 context.commit('updateCurrentChannel', response.data);
             })
         }

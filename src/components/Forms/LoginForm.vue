@@ -14,6 +14,9 @@ export default defineComponent({
             password: '',
             email: '',
             isLogin: true,
+            badUsername: false,
+            badPassword: false,
+            badEmail: false,
         }
     },
     methods: {
@@ -43,6 +46,25 @@ export default defineComponent({
             } else {
                 this.isLogin = false;
             }
+        },
+        CheckData() {
+            if (this.username.trim() == '') {
+                this.badUsername = true;
+            } else {
+                this.badUsername = false;
+            }
+
+            if (this.password.trim() == '') {
+                this.badPassword = true;
+            } else {
+                this.badPassword = false;
+            }
+
+            if (this.email.trim() == '') {
+                this.badEmail = true;
+            } else {
+                this.badEmail = false;
+            }
         }
     }
 })
@@ -54,12 +76,14 @@ export default defineComponent({
         </div>
 
         <TextInput class="w-full" :leftLabel="$t('USERNAME')" :rightLabel="this.isLogin ? $t('LOGIN.USERNAMERECOVER') : ''"
-            v-model:modelValue="this.username" />
+            v-model:modelValue="this.username" @onChange="this.CheckData()" :showError="this.badUsername"/>
 
         <TextInput class="w-full" inputType="password" :leftLabel="$t('PASSWORD')"
-            :rightLabel="this.isLogin ? $t('LOGIN.RECOVERPASSWORD') : ''" v-model:modelValue="this.password" />
+            :rightLabel="this.isLogin ? $t('LOGIN.RECOVERPASSWORD') : ''" v-model:modelValue="this.password"
+            @onChange="this.CheckData()" :showError="this.badPassword"/>
 
-        <TextInput class="w-full" :leftLabel="$t('EMAIL')" v-model:modelValue="this.email" v-if="!this.isLogin" />
+        <TextInput class="w-full" :leftLabel="$t('EMAIL')" v-model:modelValue="this.email" v-if="!this.isLogin"
+            @onChange="this.CheckData()" :showError="this.badEmail"/>
 
         <div class="flex mt-5 w-full gap-3">
             <!-- Iniciar Sesion -->
