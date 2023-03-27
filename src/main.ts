@@ -4,14 +4,13 @@ import App from './App.vue'
 import Router from './router/index';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faBars, faGears, faHeadphonesSimple, faMicrophone, faServer, faUsers, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faGears, faHeadphonesSimple, faMicrophone, faServer, faUsers, faPlus, faHashtag, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { createI18n } from 'vue-i18n';
 import enUS from './locales/en-US.json';
 import es from './locales/es.json';
 import Store from './stores/Store';
 import { VueSignalR } from '@dreamonkey/vue-signalr';
-import { useSignalR } from "@dreamonkey/vue-signalr";
 import { HubConnectionBuilder } from '@microsoft/signalr';
 
 
@@ -36,7 +35,7 @@ app.use(Router);
 app.config.globalProperties.$isLoading = false;
 
 // Icons
-library.add(faBars, faComment, faGears, faUsers, faServer, faHeadphonesSimple, faMicrophone, faPlus)
+library.add(faBars, faComment, faGears, faUsers, faServer, faHeadphonesSimple, faMicrophone, faPlus, faHashtag, faTrashCan)
 
 
 // SignalR (Real Time API)
