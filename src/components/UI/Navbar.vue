@@ -31,7 +31,7 @@ export default defineComponent({
         </div>
         <div className="flex flex-col h-full"> <!-- Content -->
             <div className="grow p-1 py-2">
-                <ChatMessage v-for="message in this.$store.getters['Channel/GetChannelMsgs']" :message="message"/>
+                <ChatMessage v-for="message in this.$store.getters['Channel/GetChannelMsgs']" :message="message" :key="message.id"/>
             </div>
             <div className="flex h-16 items-center justify-between px-3 w-full bg-base-100 px-4">
                 <input type="text" placeholder="Type here" className="input w-full bg-base-300"/>
