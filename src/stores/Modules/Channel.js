@@ -23,6 +23,9 @@ export default {
         },
         updateCurrentChannel(state, channel){
             state.currentChannel = channel;
+        },
+        updateMessages(state, messages) {
+            state.currentChannel.messages = messages;
         }
     },
     actions: {
@@ -34,6 +37,14 @@ export default {
                 context.commit('updateChannels', response.data);
             })
         },
+        UpdateMessages(context, channelId) {
+            Api({
+                method: 'get',
+                url: '/channels/' + channelId + '/messages/'
+            }).then(function(response){
+                context.commit('updateMessages', response.data);
+            })
+        },
         SelectChannel(context, channelId){
             Api({
                 method: 'get',
@@ -42,5 +53,6 @@ export default {
                 context.commit('updateCurrentChannel', response.data);
             })
         }
+
     },
 }
