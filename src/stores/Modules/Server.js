@@ -13,6 +13,9 @@ export default {
         GetCurrentServer(state) {
             return state.currentServer;
         },
+        GetCurrentServerId(state){
+            return state.currentServer.id;
+        },
         GetMembers(state){
             return state.currentServer.members;
         }

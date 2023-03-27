@@ -2,7 +2,7 @@
     <input type="checkbox" id="CreateChannelModal" class="modal-toggle" />
     <label for="CreateChannelModal" class="modal cursor-pointer">
         <label class="modal-box relative w-full" for="">
-            <ChannelForm @ServerCreated="this.CloseModal()"/>
+            <ChannelForm @ChannelCreated="this.CloseModal()"/>
         </label>
     </label>
 </template>
