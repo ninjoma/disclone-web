@@ -14,7 +14,8 @@ export default {
     },
     methods: {
         CloseModal(){
-            document.getElementById("CreateServerModal").checked = false;
+            const modal = document.getElementById("CreateServerModal") as HTMLInputElement;
+            modal.checked = false;
             this.$store.dispatch('Server/fetchServers');
         }
     }

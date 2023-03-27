@@ -14,7 +14,7 @@ export default {
     },
     data() {
         return {
-            ServerName: this.$t("SERVER.PLACEHOLDER")
+            ServerName: ""
         }
     },
     computed: {
@@ -24,18 +24,20 @@ export default {
     },
     methods: {
         createServer() {
-            Api({
-                method: 'post',
-                url: '/servers',
-                data: {
-                    id: 0,
-                    ownerId: this.getUserId,
-                    name: this.ServerName,
-                    isActive: true,
-                }
-            }).then(function (response) {
-                this.$emit('ServerCreated');
-            }.bind(this))
+            if (this.ServerName.trim() != ''){
+                Api({
+                    method: 'post',
+                    url: '/servers',
+                    data: {
+                        id: 0,
+                        ownerId: this.getUserId,
+                        name: this.ServerName,
+                        isActive: true,
+                    }
+                }).then(function (response) {
+                    this.$emit('ServerCreated');
+                }.bind(this))
+            }
         }
     }
 }

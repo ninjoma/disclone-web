@@ -1,11 +1,7 @@
 <template>
-    <button className="btn btn-outline" @click="createChannel()">{{$t('SERVER.NEWCHANNEL')}}</button>
+    <label className="btn btn-outline" for="CreateChannelModal">{{$t('SERVER.NEWCHANNEL')}}</label>
 </template>
 <script lang="ts">
 export default {
-    methods: {
-        createChannel(){
-        }
-    }
 }
 </script>
