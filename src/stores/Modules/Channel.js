@@ -12,6 +12,9 @@ export default {
         },
         GetChannelMsgs(state){
             return state.currentChannel.messages;
+        },
+        GetCurrentChannel(state){
+            return state.currentChannel;
         }
     },
     mutations: {

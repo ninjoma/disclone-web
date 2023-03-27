@@ -15,7 +15,21 @@
     "APPCONFIG": {
       "APPCONFIG": "Configuracion de la app",
       "BACKBUTTON": "Volver atras"
+    },
+    "CHART": {
+      "USERSLANGUAGE": "Usuarios por idioma"
     }
   },
-  "EMAIL": "Correo electronico"
+  "EMAIL": "Correo electronico",
+  "SERVER": {
+    "NOSELECTEDSERVER": "Sin servidor Seleccionado",
+    "NEWCHANNEL": "Nuevo Canal",
+    "ADDSERVER": "Crear Servidor"
+  },
+  "HOME": {
+    "SALUTE": "¡Bienvenido a Disclone!",
+    "WELCOMEMSG": "A tu izquierda podras ver un menu donde crear y usar servidores, para empezar a explorar presiona alguno de ellos!",
+    "NITRO": "¿Que es DISCLONE Nitro?",
+    "NITROMSG": "Disclone Nitro es un servicio de pago que proporciona una mejor experiencia de usuario"
+  }
 }

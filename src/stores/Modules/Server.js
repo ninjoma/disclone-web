@@ -12,6 +12,9 @@ export default {
         },
         GetCurrentServer(state) {
             return state.currentServer;
+        },
+        GetMembers(state){
+            return state.currentServer.members;
         }
     },
     mutations: {
@@ -40,9 +43,6 @@ export default {
                         method: 'get',
                         url: '/servers/' + server.serverId
                     }).then(function (response) {
-                        if (getters.GetCurrentServer != null){
-                            commit('updateSelectedServer', response.data);
-                        }
                         commit('addToServerList', response.data);
                     })
                 });

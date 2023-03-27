@@ -1,9 +1,10 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import ChatMessage from './ChatMessage.vue';
 
 export default defineComponent({
     components: {
-
+        ChatMessage
     }
 })
 </script>
@@ -21,7 +22,7 @@ export default defineComponent({
             <div className="pr-2 text-2xl">
                 <font-awesome-icon icon="fa-regular fa-comment" />
             </div>
-            Random Channel Name</div>
+            {{this.$store.getters['Channel/GetCurrentChannel'].name}}</div>
             <div className="flex-none hidden lg:block">
             </div>
             <label htmlFor="my-drawer-4" className="drawer-button btn btn-square btn-ghost text-xl lg:hidden">
@@ -30,30 +31,7 @@ export default defineComponent({
         </div>
         <div className="flex flex-col h-full"> <!-- Content -->
             <div className="grow p-1 py-2">
-                <div className="chat chat-start">
-                    <div className="chat-header">
-                        Username
-                        <time className="text-xs opacity-50">12:45</time>
-                    </div>
-                    <div className="chat-bubble">Random Message</div>
-                </div>
-                <div className="chat chat-end">
-                    <div className="chat-header">
-                        Another Username
-                        <time className="text-xs opacity-50">12:45</time>
-                    </div>
-                    <div className="chat-bubble">This is a prototype</div>
-                </div>
-                <div className="chat chat-end">
-                    <div className="chat-bubble">Lorem Ipsum</div>
-                </div>
-                <div className="chat chat-start">
-                    <div className="chat-header">
-                        Username
-                        <time className="text-xs opacity-50">12:45</time>
-                    </div>
-                    <div className="chat-bubble">WOW! 🤣</div>
-                </div>
+                <ChatMessage v-for="message in this.$store.getters['Channel/GetChannelMsgs']" :message="message"/>
             </div>
             <div className="flex h-16 items-center justify-between px-3 w-full bg-base-100 px-4">
                 <input type="text" placeholder="Type here" className="input w-full bg-base-300"/>
