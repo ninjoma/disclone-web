@@ -10,6 +10,10 @@ import { createI18n } from 'vue-i18n';
 import enUS from './locales/en-US.json';
 import es from './locales/es.json';
 import Store from './stores/Store';
+import { VueSignalR } from '@dreamonkey/vue-signalr';
+import { useSignalR } from "@dreamonkey/vue-signalr";
+import { HubConnectionBuilder } from '@microsoft/signalr';
+
 
 const app = createApp(App);
 
@@ -34,6 +38,18 @@ app.config.globalProperties.$isLoading = false;
 // Icons
 library.add(faBars, faComment, faGears, faUsers, faServer, faHeadphonesSimple, faMicrophone)
 
+
+// SignalR (Real Time API)
+const connection: any = new HubConnectionBuilder()
+    .withUrl("http://localhost:5610/hub", {
+        accessTokenFactory: async() => {
+            return "123";
+        }
+    })
+    .withAutomaticReconnect([250, 250, 750, 1000, 3000, 10000, 10000, 25000])
+    .build();
+
+app.use(VueSignalR, { connection });
 
 // Root Element
 app
