@@ -1,4 +1,4 @@
-import Api from '../../Gateway/Api'
+import {Api} from '../../Gateway/Api'
 
 export default {
     namespaced: true,
@@ -34,7 +34,11 @@ export default {
         },
         GetUserData(state){
             return state.user;
+        },
+        GetUserId(state){
+            return state.user.id;
         }
+
     },
     mutations: {
         UpdateUserData(state, userData) {

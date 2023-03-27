@@ -24,7 +24,9 @@
   "SERVER": {
     "NOSELECTEDSERVER": "No server selected",
     "NEWCHANNEL": "New Channel",
-    "ADDSERVER": "New Server"
+    "ADDSERVER": "New Server",
+    "SERVERNAME": "Server name",
+    "PLACEHOLDER": "SAMPLE SERVER NAME"
   },
   "HOME": {
     "SALUTE": "Welcome to DISCLONE",

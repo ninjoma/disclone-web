@@ -1,12 +1,15 @@
 import axios from 'axios'
-import store from '../stores/Store'
 import appConfig from '../../appConfig.json'
 
-export default axios.create({
+export const Api = axios.create({
     baseURL: appConfig.ApiRoute,
     timeout: 100000,
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('userToken'),
     }
 })
+
+Api.interceptors.request.use((config) => {
+    config.headers.Authorization = 'Bearer ' + localStorage.getItem('userToken');
+    return config;
+} )

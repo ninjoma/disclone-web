@@ -1,4 +1,4 @@
-import Api from '../../Gateway/Api'
+import {Api} from '../../Gateway/Api'
 
 export default {
     namespaced: true,
@@ -32,14 +32,14 @@ export default {
         }
     },
     actions: {
-        fetchServers({ commit, getters }) {
+        async fetchServers({ commit, getters }) {
             commit('clearServerList');
-            Api({
+            await Api({
                 method: 'get',
                 url: '/members/me',
             }).then(function (response) {
-                response.data.forEach(server => {
-                    Api({
+                response.data.forEach(async server => {
+                    await Api({
                         method: 'get',
                         url: '/servers/' + server.serverId
                     }).then(function (response) {

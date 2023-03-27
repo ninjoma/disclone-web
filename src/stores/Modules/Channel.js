@@ -1,4 +1,4 @@
-import Api from '../../Gateway/Api'
+import {Api} from '../../Gateway/Api'
 
 export default {
     namespaced: true,
@@ -23,7 +23,7 @@ export default {
         },
         updateCurrentChannel(state, channel){
             state.currentChannel = channel;
-        }
+        },
     },
     actions: {
         FetchChannels(context, serverId){

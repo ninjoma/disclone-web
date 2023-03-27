@@ -1,10 +1,11 @@
 <template>
-    <div class="w-full w-16 h-16 min-h-[4.5rem] bg-base-200 border-2 border-zinc-400 flex items-center justify-center hover-radius-change cursor-pointer"
-        v-on:mouseenter="handleAnnotation(true);" v-on:mouseleave="handleAnnotation(false)" v-on:click="">
+    <label
+        class="w-full w-16 h-16 min-h-[4.5rem] bg-base-200 border-2 border-zinc-400 flex items-center justify-center hover-radius-change cursor-pointer "
+        v-on:mouseenter="handleAnnotation(true);" v-on:mouseleave="handleAnnotation(false)" for="CreateServerModal">
         <span ref='serverText' class="text-xl font-bold zunc-700">
             <font-awesome-icon :icon="['fas', 'plus']" />
         </span>
-    </div>
+    </label>
     <div ref="serverAnnotation"
         class="absolute bg-inherit left-20 z-50 rounded shadow-md px-2 py-0.5 on-show hidden text-ellipsis">
         {{ this.$t("SERVER.ADDSERVER") }}
@@ -24,6 +25,8 @@ export default {
     }
 }
 </script>
+
+
 <style>
 .hover-radius-change {
     border-radius: 50%;

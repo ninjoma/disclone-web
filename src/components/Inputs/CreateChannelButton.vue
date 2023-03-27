@@ -5,7 +5,6 @@
 export default {
     methods: {
         createChannel(){
-            console.log("Hola que tal!");
         }
     }
 }

@@ -24,7 +24,9 @@
   "SERVER": {
     "NOSELECTEDSERVER": "Sin servidor Seleccionado",
     "NEWCHANNEL": "Nuevo Canal",
-    "ADDSERVER": "Crear Servidor"
+    "ADDSERVER": "Crear Servidor",
+    "SERVERNAME": "Nombre del servidor",
+    "PLACEHOLDER": "NOMBRE DE SERVIDOR DE PRUEBA"
   },
   "HOME": {
     "SALUTE": "¡Bienvenido a Disclone!",
