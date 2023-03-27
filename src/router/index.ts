@@ -9,7 +9,7 @@ const routes: VueRouter.RouteRecordRaw[] = [
     { path: '/server', component: ServerView },
     { path: '/settings', component: SettingsView },
     { path: '/', component: LoginView },
-    { path: '/debug', component: DebugView }
+    { path: '/websocket', component: DebugView }
 ]
 
 const routerOptions: VueRouter.RouterOptions = {
