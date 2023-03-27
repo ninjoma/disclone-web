@@ -22,10 +22,13 @@
   },
   "EMAIL": "Email",
   "SERVER": {
-    "NOSELECTEDSERVER": "No Server Selected",
-    "NEWCHANNEL": "New Channel"
+    "NOSELECTEDSERVER": "No server selected",
+    "NEWCHANNEL": "New Channel",
+    "ADDSERVER": "New Server"
   },
   "HOME": {
-    "SALUTE": "Welcome to DISCLONE"
+    "SALUTE": "Welcome to DISCLONE",
+    "NITRO": "¿What is DISCLONE nitro?",
+    "NITROMSG": "Disclone Nitro is a payed service that grants users better features and experiences"
   }
 }

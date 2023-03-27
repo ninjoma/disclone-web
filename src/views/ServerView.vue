@@ -3,7 +3,7 @@ import { defineComponent } from 'vue';
 import ServerBar from '../components/ServerBar/ServerBar.vue';
 import Navbar from "../components/UI/Navbar.vue";
 import UserList from '../components/UI/UserList.vue';
-import Home from '../components/UI/Home.vue';
+import Home from '../components/Pages/Home.vue';
 export default defineComponent({
     components: {
     ServerBar,
