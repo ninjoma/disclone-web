@@ -16,11 +16,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "axios": "^1.3.4",
-<<<<<<< HEAD
     "chart.js": "^4.2.1",
-=======
     "@microsoft/signalr": "^7.0.3",
->>>>>>> 26f108c9134ca93377dafeffeb9b0abc35e92298
     "daisyui": "^2.50.0",
     "vue": "^3.2.45",
     "vue-chartjs": "^5.2.0",
