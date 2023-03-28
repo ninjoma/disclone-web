@@ -26,7 +26,8 @@
     "NEWCHANNEL": "New Channel",
     "ADDSERVER": "New Server",
     "SERVERNAME": "Server name",
-    "PLACEHOLDER": "SAMPLE SERVER NAME"
+    "PLACEHOLDER": "SAMPLE SERVER NAME",
+    "MEMBERLIST": "Member List"
   },
   "HOME": {
     "SALUTE": "Welcome to DISCLONE",

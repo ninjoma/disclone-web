@@ -17,8 +17,8 @@ export default defineComponent({
                 <div className="text-2xl pr-2">
                     <font-awesome-icon icon="fa-solid fa-server" />
                 </div>
-                <span className="font-bold uppercase italic" v-if="Object.keys(this.$store.getters['Server/GetCurrentServer']).length > 0">{{ this.$store.getters['Server/GetCurrentServer'].name }}</span>
-                <span className="font-bold uppercase italic" v-if="Object.keys(this.$store.getters['Server/GetCurrentServer']).length === 0">{{ $t('SERVER.NOSELECTEDSERVER') }}</span>
+                <span className="font-bold text-sm uppercase italic" v-if="Object.keys(this.$store.getters['Server/GetCurrentServer']).length > 0">{{ this.$store.getters['Server/GetCurrentServer'].name }}</span>
+                <span className="font-bold text-sm uppercase italic" v-if="Object.keys(this.$store.getters['Server/GetCurrentServer']).length === 0">{{ $t('SERVER.NOSELECTEDSERVER') }}</span>
             </div>
         </div>
         <div class="grow">

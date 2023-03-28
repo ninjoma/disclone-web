@@ -4,7 +4,7 @@ import userProfile from './UserProfile.vue'
 
 export default defineComponent({
     components: {
-
+      userProfile
     }
 })
 </script>
@@ -18,7 +18,9 @@ export default defineComponent({
     <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
     <ul className="menu w-80 bg-base-100 text-base-content">
         <div className="flex flex-col grow bg-base-200">
-            <div className="h-16 border-b-2 p-2 flex items-center border-zinc-700">
+            <div className="h-16 border-b-2 p-2 px-4 flex items-center border-zinc-700">
+              <font-awesome-icon class="pr-3" icon="fa-solid fa-users" />
+              <span>{{ this.$t('SERVER.MEMBERLIST') }}</span>
             </div>
             <div className="flex flex-col p-3 gap-2 grow">
                 <div className="flex flex-col p-2 gap-3">
