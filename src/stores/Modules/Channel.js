@@ -70,7 +70,7 @@ export default {
             })
         },
         ClearCurrentChannel(context){
-            context.commit('clearCurrentServer');
+            context.commit('clearCurrentChannel');
             context.commit('clearChannels');
         }
 
