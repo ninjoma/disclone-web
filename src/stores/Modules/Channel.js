@@ -15,6 +15,9 @@ export default {
         },
         GetCurrentChannel(state){
             return state.currentChannel;
+        },
+        GetCurrentChannelId(state){
+            return state.currentChannel.id;
         }
     },
     mutations: {
@@ -26,6 +29,12 @@ export default {
         },
         updateMessages(state, messages) {
             state.currentChannel.messages = messages;
+        },
+        clearCurrentChannel(state){
+            state.currentChannel = {}
+        },
+        clearChannels(state){
+            state.channels = [];
         }
     },
     actions: {
@@ -59,7 +68,12 @@ export default {
                     context.commit('updateCurrentChannel', res);
                 })
             })
+        },
+        ClearCurrentChannel(context){
+            context.commit('clearCurrentServer');
+            context.commit('clearChannels');
         }
+
 
     },
 }

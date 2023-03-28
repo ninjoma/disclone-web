@@ -1,15 +1,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ChatMessage from './ChatMessage.vue';
+import MessageInput from './MessageInput.vue';
 
 export default defineComponent({
     components: {
-        ChatMessage
-    }
+        ChatMessage,
+        MessageInput
+    },
 })
 </script>
 <template>
-<div className="drawer">
+<div className="drawer ">
     <input id="serverbar-toggle" type="checkbox" className="drawer-toggle" />
     <div className="drawer-content flex flex-col h-screen overflow-hidden" style="transition-property: none; !important; transition-duration: 0ms !important;">
         <div className="w-full navbar bg-base-200 border-b-2 border-zinc-700">
@@ -29,14 +31,12 @@ export default defineComponent({
                 <font-awesome-icon icon="fa-solid fa-users" />
             </label>
         </div>
-        <div className="flex flex-col overflow-y-scroll relative h-full"> <!-- Content -->
-            <div className="p-4 px-1">
+        <div className="flex flex-col overflow-y-scroll relative h-full CustomScroll pt-4"> <!-- Content -->
+            <div className="">
                 <ChatMessage v-for="message in this.$store.getters['Channel/GetChannelMsgs']" :message="message" :key="message.id"/>
             </div>
         </div>
-        <div className="sticky bottom-0 w-full flex h-16 items-center justify-between p-5 bg-base-100">
-            <input type="text" placeholder="Type here" className="input w-full bg-base-300"/>
-        </div>
+        <MessageInput/>
     </div> 
 </div>
 </template>
