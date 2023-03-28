@@ -1,7 +1,7 @@
 <template>
     <button @click="$router.push(route)" :class="'btn ' + cssClass">{{ $t(text) }}</button>
 </template>
-<script>
+<script lang="ts">
 export default {
     props: {
         route: {

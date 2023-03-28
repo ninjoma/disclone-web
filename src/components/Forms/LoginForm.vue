@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 import TextInput from '../Inputs/TextInput.vue';
 import LanguageSelector from '../Inputs/LanguageSelector.vue';

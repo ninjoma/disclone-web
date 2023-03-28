@@ -3,10 +3,10 @@
         <progress class="progress  progress-primary w-56 h-7"></progress>
     </div>
 </template>
-<script>
+<script lang="ts">
 export default {
     props:{
-        isOpen: false,
+        isOpen: { type: Boolean, value: false },
     }
 }
 </script>
