@@ -1,5 +1,12 @@
 <template>
-    <button className="btn btn-block" @click="selectChannel()">{{ this.name }}</button>
+    <button className="btn btn-block no-animation" @click="selectChannel()">
+        <div class="w-full text-start">
+            <font-awesome-icon class="pr-3" icon="fa-solid fa-hashtag" />
+            <span>
+                {{ this.name }}
+            </span>
+        </div>
+    </button>
 </template>
 <script lang="ts">
 import { number } from '@intlify/core-base';

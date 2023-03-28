@@ -32,6 +32,9 @@ export default {
         },
         clearServerList(state){
             state.servers = [];
+        },
+        clearCurrentServer(state){
+            state.currentServer = {};
         }
     },
     actions: {
@@ -58,6 +61,9 @@ export default {
             }).then(function (response) {
                 context.commit('updateSelectedServer', response.data);
             })
+        },
+        clearCurrentServer(context){
+            context.commit('clearCurrentServer');
         }
 
     },

@@ -1,17 +1,19 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import ChatMessage from './ChatMessage.vue';
+import MessageInput from './MessageInput.vue';
 
 export default defineComponent({
     components: {
-        ChatMessage
-    }
+        ChatMessage,
+        MessageInput
+    },
 })
 </script>
 <template>
-<div className="drawer">
+<div className="drawer ">
     <input id="serverbar-toggle" type="checkbox" className="drawer-toggle" />
-    <div className="drawer-content flex flex-col" style="transition-property: none; !important; transition-duration: 0ms !important;">
+    <div className="drawer-content flex flex-col h-screen overflow-hidden" style="transition-property: none; !important; transition-duration: 0ms !important;">
         <div className="w-full navbar bg-base-200 border-b-2 border-zinc-700">
             <div className="flex-none lg:hidden">
                 <label htmlFor="serverbar-toggle" className="btn btn-square btn-ghost text-xl">
@@ -29,15 +31,12 @@ export default defineComponent({
                 <font-awesome-icon icon="fa-solid fa-users" />
             </label>
         </div>
-        <div className="flex flex-col h-full"> <!-- Content -->
-            <div className="grow p-1 py-2">
+        <div className="flex flex-col overflow-y-scroll relative h-full CustomScroll pt-4"> <!-- Content -->
+            <div className="">
                 <ChatMessage v-for="message in this.$store.getters['Channel/GetChannelMsgs']" :message="message" :key="message.id"/>
             </div>
-            <div className="flex h-16 items-center justify-between px-3 w-full bg-base-100 px-4">
-                <input type="text" placeholder="Type here" className="input w-full bg-base-300"/>
-            </div>
         </div>
-
+        <MessageInput/>
     </div> 
 </div>
 </template>

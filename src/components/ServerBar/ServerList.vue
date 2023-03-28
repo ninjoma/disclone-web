@@ -4,6 +4,7 @@ import ServerIcon from './ServerIcon.vue';
 import { ServerIconData } from './ServerIcon.vue'
 import NewServerButton from '../UI/NewServerButton.vue';
 import { mapGetters } from 'vuex';
+import HomeButton from '../UI/HomeButton.vue';
 
 export default defineComponent({
     data() {
@@ -20,7 +21,8 @@ export default defineComponent({
     },
     components: {
         ServerIcon,
-        NewServerButton
+        NewServerButton,
+        HomeButton
     }
 })
 </script>
@@ -30,6 +32,7 @@ export default defineComponent({
             p-1 bg-base-300 scrollbar-hide gap-2 overflow-y-scroll border-r-2 border-zinc-700">
             <ServerIcon v-for="server in fetchServers" :name=server.name :id=server.id />
             <NewServerButton></NewServerButton>
+            <HomeButton/>
         </div>
     </div>
 </template>

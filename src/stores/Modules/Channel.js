@@ -15,6 +15,9 @@ export default {
         },
         GetCurrentChannel(state) {
             return state.currentChannel;
+        },
+        GetCurrentChannelId(state){
+            return state.currentChannel.id;
         }
     },
     mutations: {
@@ -26,6 +29,12 @@ export default {
         },
         updateMessages(state, messages) {
             state.currentChannel.messages = messages;
+        },
+        clearCurrentChannel(state){
+            state.currentChannel = {}
+        },
+        clearChannels(state){
+            state.channels = [];
         }
     },
     actions: {
@@ -49,10 +58,22 @@ export default {
             Api({
                 method: 'get',
                 url: '/channels/' + channelId
-            }).then(function (response) {
-                context.commit('updateCurrentChannel', response.data);
+            }).then(function(res1){
+                var res = res1.data;
+                Api({
+                    method: 'get',
+                    url: '/channels/' + channelId + '/messages/'
+                }).then(function(res2){
+                    res.messages = res2.data
+                    context.commit('updateCurrentChannel', res);
+                })
             })
+        },
+        ClearCurrentChannel(context){
+            context.commit('clearCurrentServer');
+            context.commit('clearChannels');
         }
+
 
     },
 }
