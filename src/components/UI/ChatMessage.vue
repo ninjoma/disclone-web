@@ -51,7 +51,7 @@ export default {
 <template>
     <div v-if="editMode == false"
         :class="'relative chat hover:bg-base-200 duration-300 p-2 message ' + (message.userId == this.$store.getters['User/GetUserId'] ? 'chat-start' : 'chat-end')">
-        <div className="chat-header w-full">
+        <div className="chat-header">
             {{ message.user.username }}
             <time className="text-xs opacity-50">{{ formattedDate }}</time>
         </div>

@@ -34,6 +34,7 @@ export default defineComponent({
         <div className="flex flex-col overflow-y-scroll relative h-full CustomScroll pt-4"> <!-- Content -->
             <div className="">
                 <ChatMessage v-for="message in this.$store.getters['Channel/GetChannelMsgs']" :message="message" :key="message.id"/>
+                <div class="bottom"></div>
             </div>
         </div>
         <MessageInput/>
