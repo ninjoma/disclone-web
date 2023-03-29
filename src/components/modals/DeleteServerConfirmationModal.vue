@@ -28,6 +28,7 @@ export default {
                 method: "delete",
                 url: '/servers/' + this.$store.getters['Server/GetCurrentServer'].id,
             }).then(function (response) {
+                this.$store.dispatch('Server/clearCurrentServer');
                 this.$store.dispatch('Server/fetchServers');
             }.bind(this))
             const modal = document.getElementById("DeleteServerModal") as HTMLInputElement;
