@@ -27,11 +27,8 @@
     "ADDSERVER": "Crear Servidor",
     "SERVERNAME": "Nombre del servidor",
     "PLACEHOLDER": "NOMBRE DE SERVIDOR DE PRUEBA",
-<<<<<<< HEAD
-    "INVITATIONTITLE": "¡Has sido invitado a unirte a un servidor!"
-=======
+    "INVITATIONTITLE": "¡Has sido invitado a unirte a un servidor!",
     "MEMBERLIST": "Lista de miembros"
->>>>>>> 1d46686f8ba0abca264733f460c9124b5cfb8621
   },
   "HOME": {
     "SALUTE": "¡Bienvenido a Disclone!",
@@ -43,11 +40,8 @@
     "CHANNELNAME": "Nombre del canal",
     "ADDCHANNEL": "Crear canal"
   },
-<<<<<<< HEAD
-  "ACCEPT": "Aceptar"
-=======
+  "ACCEPT": "Aceptar",
   "SEARCH": {
     "PLACEHOLDER": "Buscar..."
   }
->>>>>>> 1d46686f8ba0abca264733f460c9124b5cfb8621
 }
