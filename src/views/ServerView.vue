@@ -6,15 +6,18 @@ import UserList from '../components/UI/UserList.vue';
 import Home from '../components/Pages/Home.vue';
 import CreateServerModal from '../components/modals/CreateServerModal.vue';
 import CreateChannelModal from '../components/modals/CreateChannelModal.vue';
+import DeleteServerConfirmationModal from '../components/modals/DeleteServerConfirmationModal.vue';
+
 export default defineComponent({
     components: {
-        ServerBar,
-        Navbar,
-        UserList,
-        Home,
-        CreateServerModal,
-        CreateChannelModal
-    },
+    ServerBar,
+    Navbar,
+    UserList,
+    Home,
+    CreateServerModal,
+    CreateChannelModal,
+    DeleteServerConfirmationModal
+},
     mounted(){
         if (window.localStorage.getItem("userToken") == null){
             this.$router.push('/login');
@@ -34,4 +37,5 @@ export default defineComponent({
     </ServerBar>
     <CreateServerModal/>
     <CreateChannelModal/>
+    <DeleteServerConfirmationModal/>
 </template>

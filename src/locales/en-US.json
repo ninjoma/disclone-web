@@ -28,7 +28,9 @@
     "SERVERNAME": "Server name",
     "PLACEHOLDER": "SAMPLE SERVER NAME",
     "INVITATIONTITLE": "You have been invited to join a server!",
-    "MEMBERLIST": "Member List"
+    "MEMBERLIST": "Member List",
+    "DELETESERVER": "Delete the server",
+    "INVITATION": "Copy invitation link"
   },
   "HOME": {
     "SALUTE": "Welcome to DISCLONE",
@@ -42,5 +44,6 @@
   "ACCEPT": "Accept",
   "SEARCH": {
     "PLACEHOLDER": "Search..."
-  }
+  },
+  "CANCEL": "Cancel"
 }

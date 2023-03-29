@@ -28,7 +28,9 @@
     "SERVERNAME": "Nombre del servidor",
     "PLACEHOLDER": "NOMBRE DE SERVIDOR DE PRUEBA",
     "INVITATIONTITLE": "¡Has sido invitado a unirte a un servidor!",
-    "MEMBERLIST": "Lista de miembros"
+    "MEMBERLIST": "Lista de miembros",
+    "INVITATION": "Copiar enlace de invitacion",
+    "DELETESERVER": "Eliminar Servidor"
   },
   "HOME": {
     "SALUTE": "¡Bienvenido a Disclone!",
@@ -43,5 +45,6 @@
   "ACCEPT": "Aceptar",
   "SEARCH": {
     "PLACEHOLDER": "Buscar..."
-  }
+  },
+  "CANCEL": "Cancelar"
 }
