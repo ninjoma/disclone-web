@@ -27,12 +27,10 @@ export default {
             if (this.ServerName.trim() != ''){
                 Api({
                     method: 'post',
-                    url: '/servers',
+                    url: '/servers/me',
                     data: {
-                        id: 0,
                         ownerId: this.getUserId,
                         name: this.ServerName,
-                        isActive: true,
                     }
                 }).then(function (response) {
                     this.$emit('ServerCreated');
