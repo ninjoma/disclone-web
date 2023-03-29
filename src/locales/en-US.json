@@ -45,5 +45,6 @@
   "SEARCH": {
     "PLACEHOLDER": "Search..."
   },
-  "CANCEL": "Cancel"
+  "CANCEL": "Cancel",
+  "LOGOUT": "Log out"
 }

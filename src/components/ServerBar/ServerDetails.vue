@@ -9,9 +9,15 @@ export default defineComponent({
         CreateChannelButton
     },
     methods: {
-        invitationLink(){
+        invitationLink() {
             navigator.clipboard.writeText("http://127.0.0.1:5173/disclone-web/invitation/" + this.$store.getters['Server/GetCurrentServer'].id)
         },
+        Logout(){
+            this.$store.dispatch('Server/clearCurrentServer');
+            this.$store.dispatch('User/clearUserData');
+            window.localStorage.clear();
+            this.$router.push("/login")
+        }
     }
 })
 </script>
@@ -24,8 +30,10 @@ export default defineComponent({
                         <font-awesome-icon icon="fa-solid fa-server" />
                     </label>
                     <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-72 z-50">
-                        <li><button class="text-sm" v-on:click="invitationLink()"> {{ this.$t('SERVER.INVITATION') }} </button></li>
-                        <li><label class="text-sm" for="DeleteServerModal"> {{ this.$t('SERVER.DELETESERVER') }}</label></li>
+                        <li><button class="text-sm" v-on:click="invitationLink()"> {{ this.$t('SERVER.INVITATION') }}
+                            </button></li>
+                        <li><label class="text-sm" for="DeleteServerModal"> {{ this.$t('SERVER.DELETESERVER') }}</label>
+                        </li>
                     </ul>
                 </div>
                 <span className="font-bold text-sm uppercase italic"
@@ -44,11 +52,21 @@ export default defineComponent({
             </div>
         </div>
         <div className="flex h-16 bg-base-300 items-center justify-between px-5">
-            <span>{{ this.$store.getters['User/GetUserData'].username }}</span>
+            <span>
+                <div class="dropdown dropdown-top">
+                    <label tabindex="0" class="m-1">
+                        {{ this.$store.getters['User/GetUserData'].username }}
+                    </label>
+                    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li><button class="btn" v-on:click="Logout()"> {{ this.$t("LOGOUT")}} </button></li>
+                    </ul>
+                </div>
+            </span>
             <div className="flex gap-4 text-xl items-center">
                 <div>
                     <router-link to="/settings"><font-awesome-icon icon="fa-solid fa-gears" /></router-link>
                 </div>
             </div>
+        </div>
     </div>
-</div></template>
+</template>

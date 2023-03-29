@@ -117,6 +117,10 @@ export default {
                     }
                 });
             })
+        },
+        async clearUserData(context){
+            context.commit("RemoveUserData");
         }
+
     }
 }
