@@ -30,7 +30,8 @@
     "INVITATIONTITLE": "¡Has sido invitado a unirte a un servidor!",
     "MEMBERLIST": "Lista de miembros",
     "INVITATION": "Copiar enlace de invitacion",
-    "DELETESERVER": "Eliminar Servidor"
+    "DELETESERVER": "Eliminar Servidor",
+    "DELETESERVERTITLE": "¿Desea borrar este servidor?"
   },
   "HOME": {
     "SALUTE": "¡Bienvenido a Disclone!",

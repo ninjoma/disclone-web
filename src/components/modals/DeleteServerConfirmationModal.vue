@@ -2,11 +2,12 @@
     <input type="checkbox" id="DeleteServerModal" class="modal-toggle" />
     <label for="DeleteServerModal" class="modal cursor-pointer">
         <label class="modal-box relative w-full" for="">
-            <div class="flex justify-center gap-2">
-                <button class="btn btn-outline btn-info" v-on:click="Cancel()">
+            <h1 class="w-full text-center	my-2">{{ this.$t("SERVER.DELETESERVERTITLE")}}</h1>
+            <div class="flex justify-center gap-1">
+                <button class="btn btn-outline btn-info w-1/2" v-on:click="Cancel()">
                     {{ this.$t("CANCEL") }}
                 </button>
-                <button class="btn btn-outline btn-error" v-on:click="Delete()">
+                <button class="btn btn-outline btn-error w-1/2" v-on:click="Delete()">
                     {{ this.$t("SERVER.DELETESERVER") }}
                 </button>
             </div>
