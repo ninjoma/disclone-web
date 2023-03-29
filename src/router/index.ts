@@ -15,7 +15,7 @@ const routes: VueRouter.RouteRecordRaw[] = [
 ]
 
 const routerOptions: VueRouter.RouterOptions = {
-    history: VueRouter.createWebHistory(),
+    history: VueRouter.createWebHistory('/disclone-web/'),
     routes
 }
 

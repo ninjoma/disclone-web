@@ -27,7 +27,8 @@
     "ADDSERVER": "New Server",
     "SERVERNAME": "Server name",
     "PLACEHOLDER": "SAMPLE SERVER NAME",
-    "INVITATIONTITLE": "You have been invited to join a server!"
+    "INVITATIONTITLE": "You have been invited to join a server!",
+    "MEMBERLIST": "Member List"
   },
   "HOME": {
     "SALUTE": "Welcome to DISCLONE",
@@ -38,5 +39,8 @@
     "CHANNELNAME": "Channel Name",
     "ADDCHANNEL": "Create channel"
   },
-  "ACCEPT": "Accept"
+  "ACCEPT": "Accept",
+  "SEARCH": {
+    "PLACEHOLDER": "Search..."
+  }
 }

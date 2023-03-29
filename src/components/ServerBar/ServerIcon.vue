@@ -32,7 +32,7 @@ export default defineComponent({
 <template>
     <div class="w-full w-16 h-16 min-h-[4.5rem] bg-base-200 flex items-center justify-center hover-radius-change cursor-pointer"
         v-on:mouseenter="handleAnnotation(true);" v-on:mouseleave="handleAnnotation(false)" v-on:click="OpenServer()">
-        <span ref='serverText' class="text-xl font-bold">
+        <span ref='serverText' class="font-bold">
             {{ name.substring(0, 2) }}
         </span>
     </div>

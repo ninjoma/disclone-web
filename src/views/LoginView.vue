@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 import LoginForm from '../components/Forms/LoginForm.vue';
 

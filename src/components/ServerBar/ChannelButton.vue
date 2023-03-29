@@ -1,5 +1,5 @@
 <template>
-    <button className="btn btn-block no-animation" @click="selectChannel()">
+    <button className="btn btn-block no-animation btn-sm" @click="selectChannel()">
         <div class="w-full text-start">
             <font-awesome-icon class="pr-3" icon="fa-solid fa-hashtag" />
             <span>

@@ -1,11 +1,11 @@
 <template>
-    <select :class="'select select-ghost w-full ' +  this.cssClass " :on-change="LanguageChanged()" v-model="Selectedlanguage">
+    <select :class="'select select-ghost w-full ' +  this.cssClass " :on-change="(payload: Event) => {LanguageChanged()}" v-model="Selectedlanguage">
         <option selected value="es">{{ $t('LANGUAGE.SPANISH') }}</option>
         <option value="en-US">{{ $t('LANGUAGE.ENGLISH') }}</option>
     </select>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 export default defineComponent({
     data() {

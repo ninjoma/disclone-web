@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 import ServerBar from '../components/ServerBar/ServerBar.vue';
 import LanguageSelector from '../components/Inputs/LanguageSelector.vue'
