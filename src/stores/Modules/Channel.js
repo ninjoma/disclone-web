@@ -30,6 +30,10 @@ export default {
         updateMessages(state, messages) {
             state.currentChannel.messages = messages;
         },
+        filterMessages(state, messages) {
+            console.log(messages)
+            state.currentChannel.messages = messages;
+        },
         clearCurrentChannel(state){
             state.currentChannel = {}
         },
@@ -52,6 +56,17 @@ export default {
                 url: '/channels/' + channelId + '/messages/'
             }).then(function (response) {
                 context.commit('updateMessages', response.data);
+            })
+        },
+        FilterMessages(context, data) {
+            Api({ 
+                method: 'get', 
+                url: '/channels/' + data.channelid + '/messages/',
+                params: {
+                    Content: data.contentFilter
+                } 
+            }).then(function (response) { 
+                context.commit('filterMessages', response.data); 
             })
         },
         SelectChannel(context, channelId) {

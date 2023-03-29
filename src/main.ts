@@ -4,7 +4,7 @@ import App from './App.vue'
 import Router from './router/index';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faBars, faGears, faHeadphonesSimple, faMicrophone, faServer, faUsers, faPlus, faHashtag, faTrashCan, faPenToSquare, faHouse } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faGears, faHeadphonesSimple, faMicrophone, faServer, faUsers, faPlus, faHashtag, faTrashCan, faPenToSquare, faHouse, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { faComment } from '@fortawesome/free-regular-svg-icons';
 import { createI18n } from 'vue-i18n';
 import enUS from './locales/en-US.json';
@@ -34,7 +34,7 @@ app.use(Router);
 app.config.globalProperties.$isLoading = false;
 
 // Icons
-library.add(faBars, faComment, faGears, faUsers, faServer, faHeadphonesSimple, faMicrophone, faPlus, faHashtag, faTrashCan, faPenToSquare, faHouse)
+library.add(faBars, faComment, faGears, faUsers, faServer, faHeadphonesSimple, faMicrophone, faPlus, faHashtag, faTrashCan, faPenToSquare, faHouse, faSearch)
 
 const signalRConfig: VueSignalRConfig = {
     connection: new HubConnectionBuilder()

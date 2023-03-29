@@ -1,12 +1,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import SearchInput from '../Inputs/SearchInput.vue';
 import ChatMessage from './ChatMessage.vue';
 import MessageInput from './MessageInput.vue';
 
 export default defineComponent({
     components: {
         ChatMessage,
-        MessageInput
+        MessageInput,
+        SearchInput
     },
 })
 </script>
@@ -27,9 +29,7 @@ export default defineComponent({
             {{this.$store.getters['Channel/GetCurrentChannel'].name}}</div>
             <div className="flex-none hidden lg:block">
             </div>
-            <label htmlFor="my-drawer-4" className="drawer-button btn btn-square btn-ghost text-xl lg:hidden">
-                <font-awesome-icon icon="fa-solid fa-users" />
-            </label>
+            <SearchInput></SearchInput>
         </div>
         <div className="flex flex-col overflow-y-scroll relative h-full CustomScroll pt-4"> <!-- Content -->
             <div className="">
