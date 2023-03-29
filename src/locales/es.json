@@ -26,7 +26,8 @@
     "NEWCHANNEL": "Nuevo Canal",
     "ADDSERVER": "Crear Servidor",
     "SERVERNAME": "Nombre del servidor",
-    "PLACEHOLDER": "NOMBRE DE SERVIDOR DE PRUEBA"
+    "PLACEHOLDER": "NOMBRE DE SERVIDOR DE PRUEBA",
+    "INVITATIONTITLE": "¡Has sido invitado a unirte a un servidor!"
   },
   "HOME": {
     "SALUTE": "¡Bienvenido a Disclone!",
@@ -37,5 +38,6 @@
   "CHANNEL": {
     "CHANNELNAME": "Nombre del canal",
     "ADDCHANNEL": "Crear canal"
-  }
+  },
+  "ACCEPT": "Aceptar"
 }
