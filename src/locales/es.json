@@ -27,6 +27,7 @@
     "ADDSERVER": "Crear Servidor",
     "SERVERNAME": "Nombre del servidor",
     "PLACEHOLDER": "NOMBRE DE SERVIDOR DE PRUEBA",
+    "INVITATIONTITLE": "¡Has sido invitado a unirte a un servidor!",
     "MEMBERLIST": "Lista de miembros"
   },
   "HOME": {
@@ -39,6 +40,7 @@
     "CHANNELNAME": "Nombre del canal",
     "ADDCHANNEL": "Crear canal"
   },
+  "ACCEPT": "Aceptar",
   "SEARCH": {
     "PLACEHOLDER": "Buscar..."
   }

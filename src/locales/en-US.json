@@ -27,6 +27,7 @@
     "ADDSERVER": "New Server",
     "SERVERNAME": "Server name",
     "PLACEHOLDER": "SAMPLE SERVER NAME",
+    "INVITATIONTITLE": "You have been invited to join a server!",
     "MEMBERLIST": "Member List"
   },
   "HOME": {
@@ -38,6 +39,7 @@
     "CHANNELNAME": "Channel Name",
     "ADDCHANNEL": "Create channel"
   },
+  "ACCEPT": "Accept",
   "SEARCH": {
     "PLACEHOLDER": "Search..."
   }
