@@ -25,13 +25,13 @@ export default {
             state.channels = channels;
         },
         updateCurrentChannel(state, channel) {
+            state.currentChannel.messages = [];
             state.currentChannel = channel;
         },
         updateMessages(state, messages) {
             state.currentChannel.messages = messages;
         },
         filterMessages(state, messages) {
-            console.log(messages)
             state.currentChannel.messages = messages;
         },
         clearCurrentChannel(state){
@@ -86,9 +86,14 @@ export default {
         },
         ClearCurrentChannel(context){
             context.commit('clearCurrentChannel');
+        },
+        ClearChannels(context){
+            context.commit('clearChannels');
+        },
+        LeftTab(context){
+            context.commit('clearCurrentChannel');
             context.commit('clearChannels');
         }
-
 
     },
 }

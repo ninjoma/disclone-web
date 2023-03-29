@@ -23,6 +23,7 @@ export default {
     },
     methods: {
         selectChannel(){
+            this.$store.dispatch('Channel/ClearCurrentChannel');
             this.$store.dispatch('Channel/SelectChannel', this.channelId);
         }
     }

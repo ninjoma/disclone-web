@@ -13,7 +13,7 @@ export default defineComponent({
 })
 </script>
 <template>
-<div className="drawer ">
+<div className="drawer">
     <input id="serverbar-toggle" type="checkbox" className="drawer-toggle" />
     <div className="drawer-content flex flex-col h-screen overflow-hidden" style="transition-property: none; !important; transition-duration: 0ms !important;">
         <div className="w-full navbar bg-base-200 border-b-2 border-zinc-700">
